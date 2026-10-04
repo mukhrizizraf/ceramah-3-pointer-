@@ -31,13 +31,13 @@ AKTIVITI MELALUI CHAT (ciri utama edisi ini)
   - Satu undi / jawapan setiap nama.
   - Tekan C untuk panel import: taip nama paparan anda di "Abaikan nama
     anda" supaya mesej anda sendiri tidak dikira.
-  - Jika tampal gagal, semua aktiviti masih boleh dikira manual
+  - Jika letak gagal, semua aktiviti masih boleh dikira manual
     (nombor 1–4, butang + / −, taip nama).
 
 KAWALAN
   → / Space / PgDn    seterusnya
   ← / PgUp            sebelumnya
-  Ctrl+V              tampal chat ke aktiviti slaid semasa
+  Ctrl+V              letak chat ke aktiviti slaid semasa
   C                   panel import chat
   W                   pemilih NAMA rawak (nama dari chat)
   T                   pemasa aktiviti
@@ -60,7 +60,7 @@ AKTIVITI DALAM SLAID
   Slaid 17  Prompt Battle: tulis prompt di chat (3:00)
   Slaid 18  Undian juara: 1 / 2 / 3 di chat
   Slaid 19  Demo tutor AI: Soalan 1(b)(ii), luar talian
-  Slaid 23  Komitmen di chat > Ctrl+V tampal ke dinding
+  Slaid 23  Komitmen di chat > Ctrl+V letak ke dinding
   Slaid 24  Kuiz individu: A–D di chat, papan markah nama
 
 SEBELUM HARI PROGRAM
@@ -68,5 +68,5 @@ SEBELUM HARI PROGRAM
   - Sahkan kesimpulan Soalan 3(c) (slaid 14) ikut skema jawapan kursus.
   - Pastikan penggunaan kertas BEEQK2023 dibenarkan untuk ditayangkan.
   - Buat latihan dengan rakan dalam mesyuarat sebenar (Webex / Meet)
-    untuk uji salin-tampal chat. Kemudian klik "Kosongkan semua
+    untuk uji salin-letak chat. Kemudian klik "Kosongkan semua
     aktiviti" (ikon pusing di bar alat bawah).

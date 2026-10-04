@@ -431,7 +431,7 @@
     let list = store.data.commits || [];
     const render = () => {
       wall.innerHTML = '';
-      if (!list.length) { wall.innerHTML = '<p class="wall-empty">Komitmen pelajar akan ditampal di sini…</p>'; return; }
+      if (!list.length) { wall.innerHTML = '<p class="wall-empty">Komitmen pelajar akan diletak di sini…</p>'; return; }
       list.slice(-6).forEach((c, i) => {
         const d = document.createElement('div');
         d.className = 'note';

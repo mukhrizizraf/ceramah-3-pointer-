@@ -36,7 +36,7 @@ AKTIVITI DALAM SLAID
             atau butang + / − jika mikrofon tidak berfungsi
   Slaid 17  Demo chat luar talian: tekan → setiap mesej
   Slaid 19  Ujian 3 soalan: klik YA / TIDAK
-  Slaid 21  Komitmen: taip, Enter, Enter untuk tampal
+  Slaid 21  Komitmen: taip, Enter, Enter untuk letak
   Slaid 22  Kuiz 4 pasukan: → mula, → dedah, 1–4 beri markah
 
 SEBELUM HARI PROGRAM

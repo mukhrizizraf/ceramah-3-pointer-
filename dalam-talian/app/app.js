@@ -148,7 +148,7 @@
     if (!r.parsed) { toast('Tiada mesej chat dikesan'); return; }
     Picker.addNames(Chat.roster);
     updateChatStats();
-    if (!r.fresh.length) { toast('Tiada mesej baharu sejak tampalan lepas'); return; }
+    if (!r.fresh.length) { toast('Tiada mesej baharu sejak kali terakhir diletak'); return; }
     const res = slides[cur].ctl.chat(r.fresh);
     toast(`${r.fresh.length} mesej baharu · ${res || Chat.roster.length + ' nama dikesan'}`);
     Sound.pop();
@@ -245,7 +245,7 @@
     spin() {
       if (this.busy) return;
       const names = this.list(), out = $('.r-name', this.el);
-      if (!names.length) { out.textContent = 'Tiada nama'; toast('Tampal chat (Ctrl+V) atau taip nama dahulu'); return; }
+      if (!names.length) { out.textContent = 'Tiada nama'; toast('Letak chat (Ctrl+V) atau taip nama dahulu'); return; }
       let pool = names.filter((n) => !this.picked.has(n));
       if (!pool.length) { this.picked.clear(); pool = names; }
       const final = pool[Math.floor(Math.random() * pool.length)];
@@ -422,7 +422,7 @@
         $('.ap-score', c).textContent = votes[i];
         c.classList.toggle('win', mx > 0 && votes[i] === mx);
       });
-      if (tot) status.textContent = `${tot} undi · tampal chat lagi untuk kemas kini · atau tekan 1, 2, 3`;
+      if (tot) status.textContent = `${tot} undi · letak chat lagi untuk kemas kini · atau tekan 1, 2, 3`;
     };
     const add = (i, d) => { votes[i] = Math.max(0, votes[i] + d); save(); render(); Sound.pop(); };
     cols.forEach((c, i) => {
@@ -505,7 +505,7 @@
     let list = store.data.commits || [];
     const render = () => {
       wall.innerHTML = '';
-      if (!list.length) { wall.innerHTML = '<p class="wall-empty">Komitmen dari chat akan ditampal di sini…</p>'; return; }
+      if (!list.length) { wall.innerHTML = '<p class="wall-empty">Komitmen dari chat akan diletak di sini…</p>'; return; }
       list.slice(-6).forEach((c, i) => {
         const d = document.createElement('div');
         d.className = 'note';
@@ -532,7 +532,7 @@
         let n = 0;
         fresh.forEach((m) => { if (m.msg.length >= 12) { list.push({ t: m.msg, n: m.name }); n++; } });
         save(); render(); if (n) Sound.correct();
-        return `${n} komitmen ditampal`;
+        return `${n} komitmen diletak`;
       },
     });
   };
@@ -605,7 +605,7 @@
             ${rv ? `<p class="q-why">${D.why}</p>` : ''}
             <div class="q-rowbar">
               ${rv
-                ? `<p class="q-right">${right.length ? `Betul: <b>${esc(right.slice(0, 6).join(', '))}</b>${right.length > 6 ? ` +${right.length - 6} lagi` : ''}` : tot ? 'Tiada nama yang betul direkod.' : 'Tampal chat (Ctrl+V) untuk kira jawapan.'}</p><input class="q-man" placeholder="Tambah nama yang betul, Enter" spellcheck="false">`
+                ? `<p class="q-right">${right.length ? `Betul: <b>${esc(right.slice(0, 6).join(', '))}</b>${right.length > 6 ? ` +${right.length - 6} lagi` : ''}` : tot ? 'Tiada nama yang betul direkod.' : 'Letak chat (Ctrl+V) untuk kira jawapan.'}</p><input class="q-man" placeholder="Tambah nama yang betul, Enter" spellcheck="false">`
                 : `<span class="label q-hint">Taip A, B, C atau D di chat · → untuk dedah</span><span class="q-recv">${tot} jawapan diterima</span>`}
             </div>
           </div>`;
@@ -639,7 +639,7 @@
           <span class="label" style="color:var(--signal)">Keputusan kuiz kilat</span>
           <h2 class="h-m">Berapa ramai yang <em>betul?</em></h2>
           <div class="q-sum">${QUIZ.map((D, q) => { const c = counts(q), t = c.reduce((a, b) => a + b, 0); return `<div><span>Soalan ${q + 1}</span><b>${t ? Math.round((c[D.a] / t) * 100) + '%' : '–'}</b><span>${t} jawapan</span></div>`; }).join('')}</div>
-          <div class="q-go" style="margin-top:auto"><span class="label q-hint">Papan markah nama memerlukan chat yang ditampal</span><button class="btn q-again">Main semula</button></div>
+          <div class="q-go" style="margin-top:auto"><span class="label q-hint">Papan markah nama memerlukan chat yang diletak</span><button class="btn q-again">Main semula</button></div>
         </div>`;
       }
       $('.q-again', root).addEventListener('click', () => { Q = blank(); save(); phase = 'intro'; qi = 0; render(); });
@@ -892,6 +892,6 @@ button.p{background:#FF5A1F;border-color:#FF5A1F;color:#12151D}
   const fromHash = parseInt((location.hash || '').slice(1), 10);
   const showAll = /[?&]all(&|$)/.test(location.search); // ?all = every step revealed (rehearsal / review)
   go(fromHash >= 1 && fromHash <= slides.length ? fromHash - 1 : 0, showAll ? -1 : 0);
-  if (!store.data.seenHelp) { setTimeout(() => toast('H untuk kawalan · Ctrl+V untuk tampal chat · P untuk paparan penyampai'), 900); store.data.seenHelp = 1; store.save(); }
+  if (!store.data.seenHelp) { setTimeout(() => toast('H untuk kawalan · Ctrl+V untuk letak chat · P untuk paparan penyampai'), 900); store.data.seenHelp = 1; store.save(); }
   window.__bijak = { handleChat, Chat }; // used by the rehearsal test page only
 })();
