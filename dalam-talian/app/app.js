@@ -107,7 +107,7 @@
         if (m) {
           cur = m[1].trim();
           const tail = m[2].replace(/^[\s:]+/, '').replace(TIME_LEAD, '').replace(/^[\s:]+/, '').trim();
-          if (tail && !/^\(.*\)$/.test(tail)) out.push({ name: cur, msg: tail });
+          if (tail && !/^\(.{4,}\)$/.test(tail)) out.push({ name: cur, msg: tail }); // skip "(Direct Message)"-style tags, keep answers like "(D)"
           return;
         }
         m = HDR_NAMETIME.exec(l);

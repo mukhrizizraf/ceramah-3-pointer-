@@ -245,6 +245,9 @@ button { cursor: pointer; background: none; border: none; }
 .face.back .verdict.no { color: var(--signal); }
 .face.back .verdict.dep { color: var(--sun); font-size: 76px; }
 .face.back .verdict.yes { color: var(--mint); }
+.face.back { justify-content: flex-start; }
+.face.back > div { height: 230px; display: flex; align-items: flex-end; } /* same verdict baseline on every card, whatever the text below */
+.face.back p.why { margin-top: auto; }
 .face.back p.why { font-size: 30px; line-height: 1.38; color: var(--mist); }
 
 /* 08 BIJAK overview */
@@ -401,7 +404,7 @@ button { cursor: pointer; background: none; border: none; }
 .tl-node .label { color: var(--signal-deep); }
 .tl-node h3 { font-size: 48px; font-weight: 720; letter-spacing: -.03em; line-height: 1; }
 .tl-node p { font-size: 28px; line-height: 1.42; color: var(--ink2); }
-.tl-node .ltr { display: flex; gap: 8px; margin-top: 6px; }
+.tl-node .ltr { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; } /* badges share one row even when a title wraps */
 .tl-node .ltr span { width: 46px; height: 46px; border-radius: 12px; background: var(--ink); color: var(--paper); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 21px; }
 .tl-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; border-top: 2px solid var(--ink); padding-top: 26px; }
 .tl-foot p { font-size: 32px; font-weight: 600; letter-spacing: -.015em; }
@@ -496,7 +499,7 @@ button { cursor: pointer; background: none; border: none; }
 #black.on { display: block; }
 
 #timer {
-  position: absolute; z-index: 45; top: 30px; left: 50%; transform: translateX(-50%) translateY(-140%);
+  position: absolute; z-index: 45; top: 30px; left: 50%; transform: translateX(-50%) translateY(calc(-100% - 110px));
   display: flex; align-items: center; gap: 16px; padding: 10px 14px 10px 10px;
   background: var(--ink); color: var(--paper); border-radius: 999px; border: 2px solid rgba(242, 237, 227, .16);
   box-shadow: 0 18px 50px rgba(0, 0, 0, .35); transition: transform .5s var(--ease);
