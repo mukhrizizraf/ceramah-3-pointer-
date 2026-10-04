@@ -50,6 +50,22 @@
     pop() { this.tone(520, 0.09, 'triangle', 0.14); this.tone(780, 0.07, 'triangle', 0.08, 0.04); },
     correct() { [523, 659, 784, 1047].forEach((f, i) => this.tone(f, 0.28, 'triangle', 0.15, i * 0.085)); },
     end() { [880, 660, 880, 660, 1046].forEach((f, i) => this.tone(f, 0.24, 'square', 0.08, i * 0.17)); },
+    swish(up = true) {
+      if (this.muted) return;
+      const c = this.ensure(); if (!c) return;
+      const t = c.currentTime, d = 0.22;
+      const n = c.createBuffer(1, Math.ceil(c.sampleRate * d), c.sampleRate), a = n.getChannelData(0);
+      for (let i = 0; i < a.length; i++) a[i] = Math.random() * 2 - 1;
+      const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
+      s.buffer = n; f.type = 'bandpass'; f.Q.value = 1.4;
+      f.frequency.setValueAtTime(up ? 500 : 2200, t);
+      f.frequency.exponentialRampToValueAtTime(up ? 2200 : 500, t + d);
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.1, t + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      s.connect(f).connect(g).connect(c.destination); s.start(t);
+      this.tone(up ? 660 : 495, 0.09, 'sine', 0.05);
+    },
     gong() { this.tone(196, 1.1, 'sine', 0.22); this.tone(392, 0.8, 'triangle', 0.06); },
   };
 
@@ -627,10 +643,11 @@
     $('#notes .n-body').textContent = ($('.notes', s) || {}).textContent || '';
   }
 
+  let booted = false; // no swish for the initial slide load
   function go(i, dir) {
     if (i < 0 || i >= slides.length) return;
     const prev = slides[cur];
-    if (prev !== slides[i]) { prev.classList.remove('active'); prev.ctl.leave(); }
+    if (prev !== slides[i]) { prev.classList.remove('active'); prev.ctl.leave(); if (booted) Sound.swish(i > cur); }
     if (!sessionStart && i > 0) { sessionStart = Date.now(); store.data.sessionStart = sessionStart; }
     cur = i;
     const s = slides[cur];
@@ -833,5 +850,6 @@ button.p{background:#FF5A1F;border-color:#FF5A1F;color:#12151D}
   const fromHash = parseInt((location.hash || '').slice(1), 10);
   const showAll = /[?&]all(&|$)/.test(location.search); // ?all = open slide with every step revealed (rehearsal / print)
   go(fromHash >= 1 && fromHash <= slides.length ? fromHash - 1 : 0, showAll ? -1 : 0);
+  booted = true;
   if (!store.data.seenHelp) { setTimeout(() => toast('Tekan H untuk kawalan · F untuk skrin penuh'), 900); store.data.seenHelp = 1; store.save(); }
 })();
