@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Belajar Bijak, Skor Hebat!</title>
+<link rel="stylesheet" href="bersemuka/fonts/fonts.css">
+<style>
+  :root {
+    --paper: #F2EDE3; --ink: #12151D; --night: #0E121C; --night2: #181D2B;
+    --mist: #C7CCD8; --mist2: #9098AB; --signal: #FF5A1F;
+    --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --mono: 'JetBrains Mono', Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--night); }
+  body { min-height: 100vh; color: var(--paper); font-family: var(--display); -webkit-font-smoothing: antialiased; display: flex; flex-direction: column; padding: clamp(24px, 5vw, 72px) clamp(16px, 6vw, 96px); gap: clamp(32px, 5vw, 56px); }
+  .label { font-family: var(--mono); font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: var(--mist2); }
+  header { display: flex; flex-direction: column; gap: 18px; max-width: 1200px; }
+  header .label { color: var(--signal); }
+  h1 { font-size: clamp(48px, 9vw, 128px); line-height: .9; letter-spacing: -.05em; font-weight: 790; }
+  h1 em { display: block; font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.02em; color: var(--signal); font-size: 1.12em; }
+  header p { font-size: clamp(18px, 2.2vw, 26px); line-height: 1.4; color: var(--mist); max-width: 760px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 20px; max-width: 1200px; }
+  .card { position: relative; display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 3vw, 40px); border-radius: 28px; text-decoration: none; color: var(--ink); min-height: 300px; transition: transform .2s, box-shadow .2s; }
+  .card:hover, .card:focus-visible { transform: translateY(-4px); box-shadow: 0 18px 0 rgba(0, 0, 0, .35); outline: none; }
+  .card.f2f { background: var(--signal); }
+  .card.online { background: var(--paper); }
+  .card .label { color: rgba(18, 21, 29, .7); }
+  .card h2 { font-size: clamp(36px, 4.6vw, 60px); line-height: .95; letter-spacing: -.04em; font-weight: 760; }
+  .card h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+  .card p { font-size: 18px; line-height: 1.45; max-width: 46ch; }
+  .card ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .card li { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; padding: 7px 11px; border-radius: 999px; background: rgba(18, 21, 29, .1); }
+  .card .go { margin-top: auto; display: inline-flex; align-items: center; gap: 12px; align-self: flex-start; font-family: var(--mono); font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 14px 22px; border-radius: 999px; background: var(--ink); color: var(--paper); }
+  footer { margin-top: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 40px; border-top: 1px solid rgba(242, 237, 227, .16); padding-top: 22px; max-width: 1200px; }
+  footer p { font-size: 15px; color: var(--mist); line-height: 1.5; }
+  footer kbd { font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: var(--night2); color: var(--paper); }
+</style>
+</head>
+<body>
+  <header>
+    <span class="label">Program 3 Pointer · Slot 2 · 13 Oktober 2026</span>
+    <h1>Belajar Bijak, <em>Skor Hebat.</em></h1>
+    <p>Guna AI sebagai jurulatih, bukan jalan pintas. Pilih versi pembentangan.</p>
+  </header>
+
+  <main class="cards">
+    <a class="card f2f" href="bersemuka/">
+      <span class="label">Versi 01</span>
+      <h2>Bersemuka</h2>
+      <p>Untuk dewan dan bilik kuliah. Aktiviti dengan tangan dan suara peserta.</p>
+      <ul><li>Undian tangan</li><li>Meter tepukan</li><li>Pemilih kerusi</li><li>Kuiz 4 pasukan</li></ul>
+      <span class="go">Buka versi bersemuka →</span>
+    </a>
+    <a class="card online" href="dalam-talian/">
+      <span class="label">Versi 02</span>
+      <h2>Dalam <em>talian</em></h2>
+      <p>Untuk Webex, Google Meet atau Zoom. Undian dan kuiz melalui chat mesyuarat, dengan contoh kertas BEEQK2023.</p>
+      <ul><li>Undian chat</li><li>Kuiz individu</li><li>Pemilih nama</li><li>Kertas sebenar</li></ul>
+      <span class="go">Buka versi dalam talian →</span>
+    </a>
+  </main>
+
+  <footer>
+    <p>Prof. Madya Dr. Mukhriz Izraf bin Azman Aziz · Universiti Utara Malaysia</p>
+    <p><kbd>F</kbd> skrin penuh · <kbd>P</kbd> paparan penyampai · <kbd>H</kbd> bantuan</p>
+  </footer>
+</body>
+</html>

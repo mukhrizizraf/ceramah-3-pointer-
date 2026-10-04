@@ -1,0 +1,49 @@
+BELAJAR BIJAK, SKOR HEBAT! · Slot 2 · 13 Oktober 2026
+=====================================================
+
+CARA BUKA
+1. Klik dua kali "Belajar-Bijak-Slot2.html" (Chrome atau Edge).
+2. Tekan F untuk skrin penuh.
+3. Tekan P untuk paparan penyampai (nota + jam) di skrin laptop.
+   Benarkan pop-up jika diminta.
+
+Semua berjalan tanpa internet. Fon, kuiz, undian, pemasa dan bunyi
+semuanya dalam folder ini. Pastikan folder ini ditanda
+"Available offline" di Google Drive (klik kanan > Offline access).
+
+KAWALAN
+  → / Space / PgDn    seterusnya (atau langkah seterusnya dalam slaid)
+  ← / PgUp            sebelumnya
+  F                   skrin penuh
+  P                   paparan penyampai (tetingkap baru)
+  N                   nota penceramah di bawah skrin
+  O                   semua slaid
+  T                   pemasa aktiviti (0:30 hingga 5:00)
+  W                   pemilih kerusi rawak (barisan + kerusi)
+  B                   skrin hitam
+  M                   bunyi on / off
+  H                   bantuan
+  Clicker / remote pembentangan berfungsi (PgUp / PgDn).
+
+AKTIVITI DALAM SLAID
+  Slaid 2   Undian: tekan 1–4 untuk kira tangan (Shift = tolak)
+  Slaid 3   Awan kata: taip jawapan pelajar, tekan Enter
+  Slaid 7   Kad betul/salah: klik kad atau tekan →
+  Slaid 9   Butang pemasa 1:00 untuk aktiviti Feynman
+  Slaid 14  Resipi prompt: tekan → untuk bina prompt
+  Slaid 15  Prompt Battle: pemasa 3:00, → untuk dedah jawapan
+  Slaid 16  Meter tepukan: tekan 1, 2, 3 (mikrofon laptop)
+            atau butang + / − jika mikrofon tidak berfungsi
+  Slaid 17  Demo chat luar talian: tekan → setiap mesej
+  Slaid 19  Ujian 3 soalan: klik YA / TIDAK
+  Slaid 21  Komitmen: taip, Enter, Enter untuk tampal
+  Slaid 22  Kuiz 4 pasukan: → mula, → dedah, 1–4 beri markah
+
+SEBELUM HARI PROGRAM
+  - Isi [emel] di slaid 23 (edit fail HTML, cari "[emel]").
+  - Buat latihan sekali; kemudian tekan butang "Kosongkan semua
+    aktiviti" (ikon pusing di bar alat bawah) supaya undian dan
+    markah bermula kosong.
+  - Uji mikrofon di dewan sebenar untuk meter tepukan.
+  - Buka fail dengan ?all di hujung alamat untuk lihat semua
+    langkah setiap slaid terus (berguna untuk semakan).

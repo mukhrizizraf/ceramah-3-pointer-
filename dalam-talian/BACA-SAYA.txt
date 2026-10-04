@@ -1,0 +1,72 @@
+BELAJAR BIJAK, SKOR HEBAT! · Slot 2 · EDISI DALAM TALIAN
+Untuk Webex, Google Meet dan Zoom · 13 Oktober 2026
+=========================================================
+
+CARA BUKA
+1. Klik dua kali "Belajar-Bijak-Slot2-Webex.html" (Chrome atau Edge).
+   (Atau buka pautan GitHub Pages versi dalam talian.)
+2. Tekan P untuk paparan penyampai (nota + jam) dalam tetingkap
+   berasingan. Benarkan pop-up jika diminta.
+3. Kongsi HANYA tetingkap / tab slaid (bukan seluruh skrin), supaya
+   paparan penyampai dan chat tidak dilihat peserta.
+
+CARA KONGSI
+  Webex        Share > pilih tetingkap pelayar slaid
+               > tandakan "Share computer audio" (bunyi pemasa/kuiz)
+               > Optimize for "Text and images".
+  Google Meet  Buka slaid dalam tab Chrome > Present now > "A tab"
+               > pilih tab slaid > tandakan "Also share tab audio".
+  Zoom         Share Screen > pilih tetingkap pelayar > tandakan
+               "Share sound".
+
+AKTIVITI MELALUI CHAT (ciri utama edisi ini)
+  1. Peserta taip jawapan di chat mesyuarat (A/B/C/D, 1/2/3, perkataan).
+  2. Salin chat:
+       Webex       klik dalam senarai chat, Ctrl+A, Ctrl+C
+       Google Meet seret tetikus dari mesej pertama hingga terakhir, Ctrl+C
+       Zoom        pilih mesej, Ctrl+C (atau "Save chat" dan buka fail .txt)
+  3. Kembali ke slaid, tekan Ctrl+V. Slaid mengira automatik.
+  - Boleh salin SELURUH chat setiap kali: mesej yang sudah dibaca
+    tidak dikira dua kali.
+  - Satu undi / jawapan setiap nama.
+  - Tekan C untuk panel import: taip nama paparan anda di "Abaikan nama
+    anda" supaya mesej anda sendiri tidak dikira.
+  - Jika tampal gagal, semua aktiviti masih boleh dikira manual
+    (nombor 1–4, butang + / −, taip nama).
+
+KAWALAN
+  → / Space / PgDn    seterusnya
+  ← / PgUp            sebelumnya
+  Ctrl+V              tampal chat ke aktiviti slaid semasa
+  C                   panel import chat
+  W                   pemilih NAMA rawak (nama dari chat)
+  T                   pemasa aktiviti
+  P                   paparan penyampai
+  N                   nota di bawah skrin
+  O                   semua slaid
+  F                   skrin penuh
+  B                   skrin hitam
+  M                   bunyi on / off
+  H                   bantuan
+  Klik kertas peperiksaan untuk membesarkannya (slaid 8 dan 14).
+
+AKTIVITI DALAM SLAID
+  Slaid 1   Pemanasan: "Hadir + fakulti" di chat > Ctrl+V (kumpul nama)
+  Slaid 2   Undian A–D di chat
+  Slaid 3   Awan kata dari chat
+  Slaid 7   Betul/salah dengan Reaksi (ibu jari)
+  Slaid 8   Kertas sebenar BEEQK2023 (klik untuk besarkan)
+  Slaid 14  Kes semakan Soalan 3(c) Goldfeld–Quandt
+  Slaid 17  Prompt Battle: tulis prompt di chat (3:00)
+  Slaid 18  Undian juara: 1 / 2 / 3 di chat
+  Slaid 19  Demo tutor AI: Soalan 1(b)(ii), luar talian
+  Slaid 23  Komitmen di chat > Ctrl+V tampal ke dinding
+  Slaid 24  Kuiz individu: A–D di chat, papan markah nama
+
+SEBELUM HARI PROGRAM
+  - Isi [emel] di slaid 25.
+  - Sahkan kesimpulan Soalan 3(c) (slaid 14) ikut skema jawapan kursus.
+  - Pastikan penggunaan kertas BEEQK2023 dibenarkan untuk ditayangkan.
+  - Buat latihan dengan rakan dalam mesyuarat sebenar (Webex / Meet)
+    untuk uji salin-tampal chat. Kemudian klik "Kosongkan semua
+    aktiviti" (ikon pusing di bar alat bawah).
