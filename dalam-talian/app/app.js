@@ -48,18 +48,25 @@
     swish(up = true) {
       if (this.muted) return;
       const c = this.ensure(); if (!c) return;
-      const t = c.currentTime, d = 0.22;
+      const t = c.currentTime + 0.01, d = 0.24;
       const n = c.createBuffer(1, Math.ceil(c.sampleRate * d), c.sampleRate), a = n.getChannelData(0);
       for (let i = 0; i < a.length; i++) a[i] = Math.random() * 2 - 1;
       const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain();
-      s.buffer = n; f.type = 'bandpass'; f.Q.value = 1.4;
-      f.frequency.setValueAtTime(up ? 500 : 2200, t);
-      f.frequency.exponentialRampToValueAtTime(up ? 2200 : 500, t + d);
+      s.buffer = n; f.type = 'bandpass'; f.Q.value = 1.1;
+      f.frequency.setValueAtTime(up ? 500 : 2400, t);
+      f.frequency.exponentialRampToValueAtTime(up ? 2400 : 500, t + d);
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(0.1, t + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.9, t + 0.05);
       g.gain.exponentialRampToValueAtTime(0.0001, t + d);
       s.connect(f).connect(g).connect(c.destination); s.start(t);
-      this.tone(up ? 660 : 495, 0.09, 'sine', 0.05);
+      const o = c.createOscillator(), og = c.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(up ? 420 : 900, t);
+      o.frequency.exponentialRampToValueAtTime(up ? 900 : 420, t + 0.16);
+      og.gain.setValueAtTime(0.0001, t);
+      og.gain.exponentialRampToValueAtTime(0.2, t + 0.02);
+      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
+      o.connect(og).connect(c.destination); o.start(t); o.stop(t + 0.2);
     },
     gong() { this.tone(196, 1.1, 'sine', 0.22); this.tone(392, 0.8, 'triangle', 0.06); },
   };
