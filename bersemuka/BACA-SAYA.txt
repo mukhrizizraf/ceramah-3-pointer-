@@ -40,7 +40,6 @@ AKTIVITI DALAM SLAID
   Slaid 22  Kuiz 4 pasukan: → mula, → dedah, 1–4 beri markah
 
 SEBELUM HARI PROGRAM
-  - Isi [emel] di slaid 23 (edit fail HTML, cari "[emel]").
   - Buat latihan sekali; kemudian tekan butang "Kosongkan semua
     aktiviti" (ikon pusing di bar alat bawah) supaya undian dan
     markah bermula kosong.
