@@ -569,6 +569,7 @@
           <span class="label" style="color:var(--signal)">Aktiviti 06 · Kuiz kilat</span>
           <h2 class="h-l">Siapa paling <em>BIJAK?</em></h2>
           <p class="body-l dim" style="max-width:1450px">6 soalan · 20 saat setiap satu. Taip <b style="color:var(--paper)">A, B, C atau D</b> di chat. Jawapan pertama sahaja dikira · 100 mata setiap jawapan betul.</p>
+          <div class="q-legend">${QCOL.map((c, i) => `<div class="q-opt c-${c}">${SHAPE[i]}<span class="lg">${'ABCD'[i]}</span></div>`).join('')}</div>
           <div class="q-go" style="margin-top:auto"><span class="label q-hint">${Chat.roster.length} nama dikesan dari chat setakat ini</span><button class="btn solid q-start">Mula kuiz →</button></div>
         </div>`;
         $('.q-start', root).addEventListener('click', () => ctl.next());
