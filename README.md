@@ -1,6 +1,6 @@
 # Belajar Bijak, Skor Hebat!
 
-Bahan pembentangan Slot 2, Program 3 Pointer: Grow, Focus & Achieve (Pusat Kaunseling UUM, 13 Oktober 2026).
+Bahan pembentangan Slot 1, Next Level: Misi Cemerlang (Pusat Kaunseling UUM, dalam talian melalui Webex, 13 Oktober 2026, 10.30 pg – 12.30 tgh).
 Tajuk: menggunakan AI dengan bijak dalam pembelajaran.
 
 | Versi | Untuk | Pautan |

@@ -705,7 +705,7 @@ button{font:700 15px 'JetBrains Mono',Consolas,monospace;letter-spacing:.08em;pa
 button.p{background:#FF5A1F;border-color:#FF5A1F;color:#12151D}
 </style></head><body>
 <div class="top"><div class="cur"><span class="l" id="pc"></span><h1 id="pt"></h1><div class="st" id="ps"></div></div>
-<div class="clk"><div><span class="l">Masa berlalu</span><b id="pe">0:00</b></div><div><span class="l">Jam</span><b id="pw"></b></div><div><span class="l">Baki ke 2.15</span><b id="pr"></b></div></div></div>
+<div class="clk"><div><span class="l">Masa berlalu</span><b id="pe">0:00</b></div><div><span class="l">Jam</span><b id="pw"></b></div><div><span class="l">Baki ke 12.30</span><b id="pr"></b></div></div></div>
 <span class="l">Nota penceramah</span>
 <div class="notes" id="pn"></div>
 <div class="bot"><div class="nx"><span class="l">Seterusnya</span><b id="px"></b></div><div class="btns"><button id="bz">Set semula masa</button><button id="bp">← Sebelum</button><button class="p" id="bn">Seterusnya →</button></div></div>
@@ -734,7 +734,7 @@ button.p{background:#FF5A1F;border-color:#FF5A1F;color:#12151D}
     const now = new Date();
     const el = sessionStart ? fmt(Date.now() - sessionStart) : '0:00';
     const wall = now.toLocaleTimeString('ms-MY', { hour: 'numeric', minute: '2-digit' });
-    const end = new Date(now); end.setHours(14, 15, 0, 0);
+    const end = new Date(now); end.setHours(12, 30, 0, 0);
     const rem = end - now;
     $('#notes .n-clock').textContent = `Berlalu ${el} · ${wall}`;
     const w = Presenter.win;
