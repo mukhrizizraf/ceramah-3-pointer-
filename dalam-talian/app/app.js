@@ -431,48 +431,6 @@
     return base;
   };
 
-  /* ---------- finalist vote (1–3 in chat) ---------- */
-  widgets.vote = (s, base) => {
-    const cols = $$('.ap-col', s), status = $('.ap-status', s);
-    let votes = store.data.votes || [0, 0, 0];
-    let voters = store.data.voteVoters || {};
-    const names = store.data.voteNames || ['Finalis 1', 'Finalis 2', 'Finalis 3'];
-    const save = () => { store.data.votes = votes; store.data.voteVoters = voters; store.data.voteNames = names; store.save(); };
-    const render = () => {
-      const mx = Math.max(...votes), tot = votes.reduce((a, b) => a + b, 0);
-      cols.forEach((c, i) => {
-        $('.ap-fill', c).style.height = (mx ? (votes[i] / mx) * 100 : 0) + '%';
-        $('.ap-score', c).textContent = votes[i];
-        c.classList.toggle('win', mx > 0 && votes[i] === mx);
-      });
-      if (tot) status.textContent = `${tot} undi · letak chat lagi untuk kemas kini · atau tekan 1, 2, 3`;
-    };
-    const add = (i, d) => { votes[i] = Math.max(0, votes[i] + d); save(); render(); Sound.pop(); };
-    cols.forEach((c, i) => {
-      const nm = $('.ap-name', c);
-      nm.value = names[i];
-      nm.addEventListener('input', () => { names[i] = nm.value; save(); });
-      $('.ap-plus', c).addEventListener('click', () => add(i, 1));
-      $('.ap-minus', c).addEventListener('click', () => add(i, -1));
-    });
-    s.addEventListener('reset', () => { votes = [0, 0, 0]; voters = {}; render(); });
-    render();
-    return extend(base, {
-      key(e) { const k = digit(e, 3); if (k) { add(k - 1, e.shiftKey ? -1 : 1); return true; } return false; },
-      chat(fresh) {
-        let n = 0;
-        fresh.forEach((m) => {
-          const k = numOf(m.msg, 3); if (k < 0) return;
-          if (m.name) { if (voters[m.name] !== undefined) return; voters[m.name] = k; }
-          votes[k]++; n++;
-        });
-        save(); render();
-        if (n) Sound.correct();
-        return `${n} undi dikira`;
-      },
-    });
-  };
-
   /* ---------- offline chat simulation ---------- */
   widgets.chat = (s, base) => {
     const msgs = $$('.msg', s), lis = $$('.demo-steps li', s);
@@ -841,7 +799,7 @@ button.p{background:#FF5A1F;border-color:#FF5A1F;color:#12151D}
     toast(m ? 'Bunyi dimatikan' : 'Bunyi dihidupkan');
   };
   const resetAll = () => {
-    if (!confirm('Kosongkan semua undian, awan kata, komitmen, undi juara, markah kuiz dan chat yang dibaca?')) return;
+    if (!confirm('Kosongkan semua undian, awan kata, komitmen, markah kuiz dan chat yang dibaca?')) return;
     store.data = { slide: cur, muted: Sound.muted, chatMe: Chat.me, pickNames: store.data.pickNames };
     store.save();
     Chat.forget(); updateChatStats(); sessionStart = 0;

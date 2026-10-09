@@ -48,23 +48,30 @@ KAWALAN
   B                   skrin hitam
   M                   bunyi on / off
   H                   bantuan
-  Klik kertas peperiksaan untuk membesarkannya (slaid 8 dan 14).
+  Klik kertas peperiksaan untuk membesarkannya (slaid 11 dan 17).
 
 AKTIVITI DALAM SLAID
   Slaid 1   Pemanasan: "Hadir + fakulti" di chat > Ctrl+V (kumpul nama)
-  Slaid 2   Undian A–D di chat
-  Slaid 3   Awan kata dari chat
-  Slaid 7   Betul/salah dengan Reaksi (ibu jari)
-  Slaid 8   Kertas sebenar BEEQK2023 (klik untuk besarkan)
-  Slaid 14  Kes semakan Soalan 3(c) Goldfeld–Quandt
-  Slaid 17  Prompt Battle: tulis prompt di chat (3:00)
-  Slaid 18  Undian juara: 1 / 2 / 3 di chat
-  Slaid 19  Demo tutor AI: Soalan 1(b)(ii), luar talian
-  Slaid 23  Komitmen di chat > Ctrl+V letak ke dinding
-  Slaid 24  Kuiz individu: A–D di chat, papan markah nama
+  Slaid 2   Perlumbaan AI 2022–2026: tekan → untuk setiap tahun
+  Slaid 3   Dari teks ke video: tekan → untuk setiap anak tangga
+  Slaid 5   Undian A–D di chat
+  Slaid 6   Awan kata dari chat
+  Slaid 10  Betul/salah dengan Reaksi (ibu jari)
+  Slaid 11  Kertas sebenar BEEQK2023 (klik untuk besarkan)
+  Slaid 17  Kes semakan Soalan 3(c) Goldfeld–Quandt
+  Slaid 20  Prompt Battle: tulis prompt di chat (3:00), kongsi 3 prompt (W)
+  Slaid 21  Baiki prompt dengan AI: klik Salin, letak prompt di chat
+  Slaid 22  Tetapkan pilihan AI: templat pelajar Malaysia (Salin)
+  Slaid 23  Demo tutor AI: Soalan 1(b)(ii), luar talian
+  Slaid 25  Kes FYP: bila AI membaca artikel untuk anda
+  Slaid 26  Cara betul membaca artikel jurnal (Salin prompt)
+  Slaid 29  Komitmen di chat > Ctrl+V letak ke dinding
+  Slaid 30  Kuiz individu: A–D di chat, papan markah nama
 
 SEBELUM HARI PROGRAM
-  - Sahkan kesimpulan Soalan 3(c) (slaid 14) ikut skema jawapan kursus.
+  - Sahkan kesimpulan Soalan 3(c) (slaid 17) ikut skema jawapan kursus.
+  - Semak berita AI terkini untuk slaid 2 (contoh: Gemini 4 mungkin
+    sudah dilancar) dan nama menu tetapan untuk slaid 22.
   - Pastikan penggunaan kertas BEEQK2023 dibenarkan untuk ditayangkan.
   - Buat latihan dengan rakan dalam mesyuarat sebenar (Webex / Meet)
     untuk uji salin-letak chat. Kemudian klik "Kosongkan semua
