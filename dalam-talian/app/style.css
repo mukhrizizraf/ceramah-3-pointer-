@@ -837,3 +837,60 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 /* closing slide: BIJAK tiles */
 .close-bj { display: flex; gap: 12px; }
 .close-bj span { width: 84px; height: 84px; border-radius: 18px; background: var(--signal); color: var(--ink); display: grid; place-items: center; font-size: 46px; font-weight: 780; letter-spacing: -.02em; }
+
+/* custom-instruction walkthroughs: mock settings screens, current step from data-step-now */
+.ci { flex: 1; display: grid; grid-template-columns: 1fr 1010px; gap: 64px; min-height: 0; }
+.ci .left { display: flex; flex-direction: column; gap: 30px; }
+.ci-steps { list-style: none; display: flex; flex-direction: column; margin-top: 6px; }
+.ci-steps li { display: grid; grid-template-columns: 70px 1fr; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 2px solid var(--line); transition: opacity .4s; }
+.ci-steps li:first-child { border-top: 2px solid var(--line); }
+.ci-steps li b { width: 54px; height: 54px; border-radius: 50%; border: 2px solid var(--ink); display: grid; place-items: center; font-family: var(--mono); font-size: 22px; transition: all .3s; }
+.ci-steps li span { font-size: 31px; font-weight: 650; letter-spacing: -.015em; line-height: 1.15; }
+.ci-steps li small { display: block; margin-top: 6px; font-family: var(--mono); font-size: 20px; font-weight: 500; letter-spacing: .03em; color: var(--ink3); }
+.slide:not([data-step-now="0"]) .ci-steps li { opacity: .4; }
+.ci-win { position: relative; background: var(--card); border: 2.5px solid var(--ink); border-radius: 30px; box-shadow: 16px 16px 0 var(--ink); display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
+.ci-app { flex: 1; display: grid; grid-template-columns: 270px 1fr; min-height: 0; }
+.ci-nav { background: #EFEAE1; border-right: 1.5px solid var(--line); padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; }
+.ci-h { position: relative; align-self: stretch; font-size: 28px; font-weight: 720; letter-spacing: -.02em; padding: 8px 12px; margin-bottom: 10px; border-radius: 12px; }
+.ci-search { border: 1.5px solid var(--line); border-radius: 10px; padding: 9px 14px; margin-bottom: 8px; font-size: 19px; color: var(--ink3); background: var(--card); }
+.ci-sub { font-family: var(--mono); font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink3); padding: 14px 14px 6px; }
+.ci-it { position: relative; padding: 10px 14px; border-radius: 10px; font-size: 21px; color: var(--ink2); }
+.ci-it:has(.ci-pin.shown) { background: #DDD6C9; color: var(--ink); font-weight: 650; }
+.ci-menu { position: relative; display: inline-grid; place-items: center; width: 52px; height: 52px; border-radius: 12px; }
+.ci-menu svg { width: 30px; height: 30px; }
+.ci-main { padding: 30px 36px; display: flex; flex-direction: column; gap: 22px; min-height: 0; }
+.ci-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-bottom: 18px; border-bottom: 1.5px solid #E6E0D4; font-size: 21px; }
+.ci-row i { font-style: normal; border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 16px; min-width: 280px; color: var(--ink2); background: #fff; }
+.ci-lab { display: block; font-size: 23px; font-weight: 680; }
+.ci-title { display: block; font-size: 30px; font-weight: 720; letter-spacing: -.02em; }
+.ci-desc { display: block; margin-top: 6px; font-size: 18px; line-height: 1.4; color: var(--ink3); }
+.ci-desc.big { font-size: 22px; color: var(--ink2); margin: 0 0 4px; }
+.ci-box { position: relative; height: 236px; border: 1.5px solid var(--line); border-radius: 14px; padding: 16px 70px 16px 20px; background: #fff; }
+.ci-ph { position: absolute; left: 20px; top: 16px; font-size: 20px; color: #A9A296; transition: opacity .3s; }
+.ci-box:has(.ci-typed.shown) .ci-ph { opacity: 0; }
+.ci-typed { height: 100%; overflow: hidden; font-size: 19px; line-height: 1.5; color: var(--ink); -webkit-mask-image: linear-gradient(#000 62%, transparent); mask-image: linear-gradient(#000 62%, transparent); }
+.ci-top { display: flex; align-items: center; gap: 12px; font-size: 20px; color: var(--ink2); }
+.ci-top > span:first-child { margin-right: auto; }
+.ci-btn { position: relative; border: 1.5px solid var(--line); border-radius: 999px; padding: 9px 22px; font-size: 19px; font-weight: 600; color: var(--ink); background: #fff; }
+.ci-btn.dark { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.ci-btn.blue { background: #0B57D0; border-color: #0B57D0; color: #fff; padding: 12px 28px; }
+.ci-top .ci-btn.blue { margin-right: auto; }
+.ci-card { display: grid; grid-template-columns: 1fr auto; gap: 16px; background: #ECE8F4; border-radius: 18px; padding: 18px 22px; font-size: 19px; line-height: 1.5; color: var(--ink); }
+.ci-card span { font-size: 24px; color: var(--ink3); }
+.ci-hit { outline: 4px solid transparent; outline-offset: 0; }
+.slide[data-step-now="1"] .ci-hit[data-ci="1"], .slide[data-step-now="2"] .ci-hit[data-ci="2"],
+.slide[data-step-now="3"] .ci-hit[data-ci="3"], .slide[data-step-now="4"] .ci-hit[data-ci="4"] { outline-color: var(--signal); }
+.slide[data-step-now="1"] .ci-steps li[data-ci="1"], .slide[data-step-now="2"] .ci-steps li[data-ci="2"],
+.slide[data-step-now="3"] .ci-steps li[data-ci="3"], .slide[data-step-now="4"] .ci-steps li[data-ci="4"] { opacity: 1; }
+.slide[data-step-now="1"] .ci-steps li[data-ci="1"] b, .slide[data-step-now="2"] .ci-steps li[data-ci="2"] b,
+.slide[data-step-now="3"] .ci-steps li[data-ci="3"] b, .slide[data-step-now="4"] .ci-steps li[data-ci="4"] b { background: var(--signal); border-color: var(--signal); }
+.ci-pin { position: absolute; right: 10px; top: 50%; width: 40px; height: 40px; margin-top: -20px; border-radius: 50%; display: grid; place-items: center; font: 700 20px/1 var(--mono); letter-spacing: 0; background: var(--ink); color: var(--paper); transition: opacity .3s, transform .35s var(--ease), background .3s; }
+.ci-pin[data-step]:not(.shown) { opacity: 0; transform: scale(.4); }
+.ci-pin.tr { top: 14px; right: 14px; margin-top: 0; }
+.ci-pin.out { right: auto; left: calc(100% + 12px); }
+.slide[data-step-now="1"] .ci-pin[data-ci="1"], .slide[data-step-now="2"] .ci-pin[data-ci="2"],
+.slide[data-step-now="3"] .ci-pin[data-ci="3"] { background: var(--signal); color: var(--ink); }
+.ci-test { position: absolute; left: 28px; right: 28px; bottom: 28px; background: var(--ink); color: var(--paper); border-radius: 22px; padding: 24px 30px; display: flex; flex-direction: column; gap: 14px; box-shadow: 10px 10px 0 var(--signal); }
+.ci-test p { display: grid; grid-template-columns: 80px 1fr; gap: 14px; align-items: baseline; font-size: 23px; line-height: 1.4; }
+.ci-test .label { font-size: 16px; color: var(--mist2); }
+.ci-test p + p .label { color: var(--signal); }

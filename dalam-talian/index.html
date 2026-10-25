@@ -494,9 +494,9 @@
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Ajar AI siapa <em>anda</em>: tetapkan pilihan.</h2>
   <div class="mp tight">
     <div>
-      <div class="st3" data-step="1"><span class="n">01</span><div><h3>ChatGPT</h3><p><small>Personalization → Custom instructions</small></p></div></div>
-      <div class="st3" data-step="2"><span class="n">02</span><div><h3>Claude</h3><p><small>Settings → Profile · atau Projects</small></p></div></div>
-      <div class="st3" data-step="3"><span class="n">03</span><div><h3>Gemini</h3><p><small>Settings → Personal context · atau Gems</small></p></div></div>
+      <div class="st3" data-step="1"><span class="n">01</span><div><h3>Claude</h3><p><small>Settings → Account · atau Projects</small></p></div></div>
+      <div class="st3" data-step="2"><span class="n">02</span><div><h3>ChatGPT</h3><p><small>Personalization → Custom instructions</small></p></div></div>
+      <div class="st3" data-step="3"><span class="n">03</span><div><h3>Gemini</h3><p><small>Customize → + Add · atau Gems</small></p></div></div>
       <div class="st3 key" data-step="4"><span class="n">!</span><div><h3>Privasi</h3><p>Semak tetapan data. Jangan simpan <b>no. matrik</b>, <b>IC</b> atau data peribadi.</p></div></div>
     </div>
     <div class="mp-r">
@@ -507,10 +507,162 @@
     <div class="mp-try rise" style="--i:3"><span class="label">Uji malam ini</span><p>Selepas tetapkan, tanya AI: "Apa yang anda tahu tentang cara saya mahu belajar?"</p></div>
     </div>
   </div>
-  <aside class="notes">[3 minit] Pilihan (custom instructions) ialah arahan tetap yang AI baca sebelum setiap perbualan. Tetapkan sekali, dan anda tidak perlu ulang "saya pelajar tahun 2, jangan beri jawapan terus" setiap kali. Tekan → untuk tempat menetapkannya dalam ChatGPT, Claude dan Gemini. Projects (Claude) dan Gems (Gemini) boleh dibina satu untuk setiap kursus, lengkap dengan nota kuliah. [Nama menu berubah dari semasa ke semasa; semak dalam aplikasi sebelum sesi.] Terangkan templat: bahasa (BM untuk faham, istilah Inggeris kerana kertas peperiksaan dalam bahasa Inggeris), peranan jurulatih (selari dengan integriti), contoh Malaysia, dan larangan mereka rujukan. Langkah 4, privasi: semak tetapan data dalam setiap aplikasi, dan jangan letak nombor matrik, IC atau maklumat peribadi. Klik "Salin" dan letak templat di chat mesyuarat. Cabaran: tetapkan malam ini dan tukar perkataan dalam kurungan.</aside>
+  <aside class="notes">[3 minit] Pilihan (custom instructions) ialah arahan tetap yang AI baca sebelum setiap perbualan. Tetapkan sekali, dan anda tidak perlu ulang "saya pelajar tahun 2, jangan beri jawapan terus" setiap kali. Tekan → untuk tempat menetapkannya dalam Claude, ChatGPT dan Gemini (slaid 28 hingga 30 tunjuk langkah demi langkah). Projects (Claude) dan Gems (Gemini) boleh dibina satu untuk setiap kursus, lengkap dengan nota kuliah. [Nama menu berubah dari semasa ke semasa; semak dalam aplikasi sebelum sesi.] Terangkan templat: bahasa (BM untuk faham, istilah Inggeris kerana kertas peperiksaan dalam bahasa Inggeris), peranan jurulatih (selari dengan integriti), contoh Malaysia, dan larangan mereka rujukan. Langkah 4, privasi: semak tetapan data dalam setiap aplikasi, dan jangan letak nombor matrik, IC atau maklumat peribadi. Klik "Salin" dan letak templat di chat mesyuarat. Cabaran: tetapkan malam ini dan tukar perkataan dalam kurungan.</aside>
 </section>
 
-<!-- ============ 27 DEMO ============ -->
+<!-- ============ 27 CRITIC TEMPLATE ============ -->
+<section class="slide light" data-title="Templat AI pengkritik" data-section="Kemahiran prompt">
+  <span class="label rise" style="--i:0;color:var(--signal-deep)">Tetapkan sekali · lapisan kedua</span>
+  <h2 class="h-m rise" style="--i:1;margin-top:18px">Templat 2: AI <em>pengkritik</em>, bukan pengampu.</h2>
+  <div class="mp tight">
+    <div>
+      <div class="st3" data-step="1"><span class="n">01</span><div><h3>Jangan mula dengan setuju</h3><p>AI suka memuji. Pujian buat anda rasa faham, padahal belum.</p></div></div>
+      <div class="st3" data-step="2"><span class="n">02</span><div><h3>Tag keyakinan</h3><p><b>[Pasti]</b> <b>[Mungkin]</b> <b>[Teka]</b>: anda tahu bahagian mana wajib disemak.</p></div></div>
+      <div class="st3" data-step="3"><span class="n">03</span><div><h3>Jangan mudah mengalah</h3><p>Bantahan tanpa bukti baharu tidak cukup untuk ubah jawapan.</p></div></div>
+      <div class="st3 key" data-step="4"><span class="n">!</span><div><h3>Tambah, bukan ganti</h3><p>Letak di bawah templat pelajar. Cari silap <b>sebelum</b> peperiksaan.</p></div></div>
+    </div>
+    <div class="mp-r">
+    <div class="prompt rise" style="--i:2">
+      <div class="prompt-head"><span class="label">Templat pengkritik · sambung templat 1</span><button class="btn copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Salin</button></div>
+      <p class="prompt-text">Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju: ayat pertama mesti mencabar andaian saya atau tunjuk apa yang saya terlepas. Tandakan setiap dakwaan [Pasti], [Mungkin] atau [Teka]. Jangan guna "Soalan yang bagus" atau "Anda betul sekali". Jika saya salah, katakan "Saya tidak setuju kerana …" dan beri cara yang lebih baik. Jika saya membantah tanpa maklumat baharu, kekalkan pendirian anda.</p>
+    </div>
+    <div class="mp-try rise" style="--i:3"><span class="label">Uji andaian salah</span><p>Tanya: "Heteroskedastisiti bermaksud ralat saling berkorelasi, betul?" Jika AI terus setuju, templat belum berfungsi.</p></div>
+    </div>
+  </div>
+  <aside class="notes">[3 minit] Templat ini diadaptasi daripada arahan yang saya sendiri guna dalam Claude, ChatGPT dan Gemini. Masalahnya: AI cenderung bersetuju dan memuji. Bila AI kata "Betul, bagus!", kita rasa faham (ingat slaid Ilusi faham), padahal mungkin salah. Tekan → untuk setiap peraturan. 1) Ayat pertama mesti mencabar, bukan memuji. 2) Tag keyakinan: [Pasti] ada bukti kukuh, [Mungkin] inferens kuat, [Teka] AI mengisi kekosongan. Semua yang bertanda [Teka] wajib disemak dengan nota atau buku. 3) Jika pelajar membantah tanpa bukti, AI tidak patut terus mengalah. 4) Templat ini disambung di bawah templat pelajar, bukan menggantikannya; tujuannya mencari silap sebelum peperiksaan, bukan menjadikan AI kasar. Ujian: dakwaan "heteroskedastisiti bermaksud ralat saling berkorelasi" adalah SALAH (itu autokorelasi; heteroskedastisiti ialah varians ralat yang tidak malar). AI yang mengikut templat sepatutnya membantah. Klik "Salin" dan letak di chat mesyuarat.</aside>
+</section>
+
+<!-- ============ 28 HOW-TO: CLAUDE ============ -->
+<section class="slide sand" data-title="Langkah: Claude" data-section="Kemahiran prompt">
+  <div class="ci">
+    <div class="left">
+      <span class="label rise" style="--i:0;color:var(--signal-deep)">Langkah 1 / 3 · tekan →</span>
+      <h2 class="h-m rise" style="--i:1">Pasang arahan di <em>Claude</em>.</h2>
+      <ol class="ci-steps rise" style="--i:2">
+        <li data-ci="1"><b>1</b><span>Klik nama anda → Settings<small>bawah kiri · claude.ai</small></span></li>
+        <li data-ci="2"><b>2</b><span>Pilih Account</span></li>
+        <li data-ci="3"><b>3</b><span>Letak templat 1 + 2<small>Instructions for Claude</small></span></li>
+        <li data-ci="4"><b>4</b><span>Chat baharu: uji</span></li>
+      </ol>
+    </div>
+    <div class="ci-win rise" style="--i:2">
+      <div class="chat-top"><i></i><i></i><i></i><span class="label">claude.ai · Settings</span><span class="label">Simulasi</span></div>
+      <div class="ci-app">
+        <nav class="ci-nav">
+          <span class="ci-h ci-hit" data-ci="1">Settings<b class="ci-pin" data-ci="1" data-step="1" data-keep>1</b></span>
+          <span class="ci-search">Search</span>
+          <span class="ci-sub">Preferences</span>
+          <span class="ci-it">General</span>
+          <span class="ci-it ci-hit" data-ci="2">Account<b class="ci-pin" data-ci="2" data-step="2" data-keep>2</b></span>
+          <span class="ci-it">Privacy</span>
+          <span class="ci-it">Billing</span>
+          <span class="ci-it">Usage</span>
+          <span class="ci-it">Capabilities</span>
+          <span class="ci-it">Memory</span>
+        </nav>
+        <div class="ci-main">
+          <div class="ci-row"><span>Full name</span><i>Nur Aisyah binti Ahmad</i></div>
+          <div class="ci-row"><span>What should Claude call you?</span><i>Aisyah</i></div>
+          <div><span class="ci-lab">Instructions for Claude</span><span class="ci-desc">Claude will keep these in mind across chats.</span></div>
+          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
+        </div>
+      </div>
+      <div class="ci-test" data-step="4">
+        <p><span class="label">Anda</span>Apa yang anda tahu tentang cara saya mahu belajar?</p>
+        <p><span class="label">AI</span>Anda pelajar tahun 2 Ekonomi di UUM. Saya akan bimbing anda langkah demi langkah, bukan siapkan tugasan anda.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[3 minit] Simulasi, berfungsi tanpa internet. Tekan → untuk setiap langkah; bulatan oren pada skrin sama dengan nombor langkah di kiri. 1) Di claude.ai, klik nama anda di bawah kiri, kemudian Settings. 2) Pilih Account. 3) Di kotak "Instructions for Claude", letak templat pelajar (slaid 26), kemudian templat pengkritik (slaid 27) di bawahnya. 4) Buka chat baharu dan tanya: "Apa yang anda tahu tentang cara saya mahu belajar?" Jika AI menyebut tahun, program dan peranan jurulatih, arahan sudah berfungsi. Jika internet baik, tunjuk skrin sebenar (kongsi tetingkap pelayar). [Nama menu ikut paparan Oktober 2026; semak semula sebelum sesi.] Jika masa suntuk, tunjuk satu aplikasi sahaja dan tekan O untuk langkau ke slaid 31.</aside>
+</section>
+
+<!-- ============ 29 HOW-TO: CHATGPT ============ -->
+<section class="slide sand" data-title="Langkah: ChatGPT" data-section="Kemahiran prompt">
+  <div class="ci">
+    <div class="left">
+      <span class="label rise" style="--i:0;color:var(--signal-deep)">Langkah 2 / 3 · tekan →</span>
+      <h2 class="h-m rise" style="--i:1">Pasang arahan di <em>ChatGPT</em>.</h2>
+      <ol class="ci-steps rise" style="--i:2">
+        <li data-ci="1"><b>1</b><span>Klik nama anda → Settings<small>bawah kiri · chatgpt.com</small></span></li>
+        <li data-ci="2"><b>2</b><span>Personalization<small>→ Custom instructions</small></span></li>
+        <li data-ci="3"><b>3</b><span>Letak templat → Save</span></li>
+        <li data-ci="4"><b>4</b><span>Chat baharu: uji</span></li>
+      </ol>
+    </div>
+    <div class="ci-win rise" style="--i:2">
+      <div class="chat-top"><i></i><i></i><i></i><span class="label">chatgpt.com · Settings</span><span class="label">Simulasi</span></div>
+      <div class="ci-app">
+        <nav class="ci-nav">
+          <span class="ci-h ci-hit" data-ci="1">Settings<b class="ci-pin" data-ci="1" data-step="1" data-keep>1</b></span>
+          <span class="ci-search">Search</span>
+          <span class="ci-it">Account</span>
+          <span class="ci-it">Archived chats</span>
+          <span class="ci-it">Voice</span>
+          <span class="ci-it">Storage</span>
+          <span class="ci-it ci-hit" data-ci="2">Personalization<b class="ci-pin" data-ci="2" data-step="2" data-keep>2</b></span>
+          <span class="ci-it">Keyboard</span>
+          <span class="ci-it">Usage</span>
+          <span class="ci-it">Billing</span>
+        </nav>
+        <div class="ci-main">
+          <div class="ci-top"><span>← Back</span><span class="ci-btn">Cancel</span><span class="ci-btn dark ci-hit" data-ci="3">Save</span></div>
+          <div><span class="ci-title">ChatGPT custom instructions</span><span class="ci-desc">Give ChatGPT extra instructions and context for all chats.</span></div>
+          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
+          <div class="ci-row"><span>Nickname</span><i>Aisyah</i></div>
+        </div>
+      </div>
+      <div class="ci-test" data-step="4">
+        <p><span class="label">Anda</span>Apa yang anda tahu tentang cara saya mahu belajar?</p>
+        <p><span class="label">AI</span>Anda pelajar tahun 2 Ekonomi di UUM. Saya akan bimbing anda langkah demi langkah, bukan siapkan tugasan anda.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[2 minit] Tekan → untuk setiap langkah. 1) Di chatgpt.com, klik nama anda di bawah kiri, kemudian Settings. 2) Pilih Personalization, kemudian Custom instructions. 3) Letak templat 1 dan 2 dalam kotak, isi Nickname dan Occupation jika mahu, dan tekan Save di atas kanan. Jangan lupa Save: tanpa Save, arahan hilang. 4) Arahan hanya dibaca dalam chat BAHARU, bukan chat yang sedang dibuka. [Nama menu ikut paparan Oktober 2026; semak semula sebelum sesi.]</aside>
+</section>
+
+<!-- ============ 30 HOW-TO: GEMINI ============ -->
+<section class="slide sand" data-title="Langkah: Gemini" data-section="Kemahiran prompt">
+  <div class="ci">
+    <div class="left">
+      <span class="label rise" style="--i:0;color:var(--signal-deep)">Langkah 3 / 3 · tekan →</span>
+      <h2 class="h-m rise" style="--i:1">Pasang arahan di <em>Gemini</em>.</h2>
+      <ol class="ci-steps rise" style="--i:2">
+        <li data-ci="1"><b>1</b><span>Buka menu sisi ☰<small>gemini.google.com</small></span></li>
+        <li data-ci="2"><b>2</b><span>Pilih Customize</span></li>
+        <li data-ci="3"><b>3</b><span>+ Add → letak templat<small>satu templat, satu kotak</small></span></li>
+        <li data-ci="4"><b>4</b><span>Chat baharu: uji</span></li>
+      </ol>
+    </div>
+    <div class="ci-win rise" style="--i:2">
+      <div class="chat-top"><i></i><i></i><i></i><span class="label">gemini.google.com · Customize</span><span class="label">Simulasi</span></div>
+      <div class="ci-app">
+        <nav class="ci-nav">
+          <span class="ci-h"><span class="ci-menu ci-hit" data-ci="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><b class="ci-pin out" data-ci="1" data-step="1" data-keep>1</b></span></span>
+          <span class="ci-it">New chat</span>
+          <span class="ci-it">Library</span>
+          <span class="ci-it">Images</span>
+          <span class="ci-it">Scheduled</span>
+          <span class="ci-it ci-hit" data-ci="2">Customize<b class="ci-pin" data-ci="2" data-step="2" data-keep>2</b></span>
+          <span class="ci-sub">Notebooks</span>
+          <span class="ci-it">New notebook</span>
+        </nav>
+        <div class="ci-main">
+          <div><span class="ci-desc big">Customize your Gemini experience by giving it instructions.</span><span class="ci-desc">Example: Start responses with a TL;DR summary</span></div>
+          <div class="ci-top"><span class="ci-btn blue ci-hit" data-ci="3">+ Add<b class="ci-pin out" data-ci="3" data-step="3" data-keep>3</b></span><span class="ci-btn">Delete all</span></div>
+          <div class="ci-card" data-step="3"><p>Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris…</p><span>⋮</span></div>
+          <div class="ci-card" data-step="3"><p>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><span>⋮</span></div>
+        </div>
+      </div>
+      <div class="ci-test" data-step="4">
+        <p><span class="label">Anda</span>Apa yang anda tahu tentang cara saya mahu belajar?</p>
+        <p><span class="label">AI</span>Anda pelajar tahun 2 Ekonomi di UUM. Saya akan bimbing anda langkah demi langkah, bukan siapkan tugasan anda.</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">[2 minit] Tekan → untuk setiap langkah. 1) Di gemini.google.com, buka menu sisi (ikon ☰ di atas kiri). 2) Pilih Customize. 3) Klik "+ Add" dan letak templat pelajar. Klik "+ Add" sekali lagi untuk templat pengkritik: Gemini menyimpan setiap arahan sebagai kotak berasingan, jadi mudah dipadam atau diubah satu per satu. 4) Buka chat baharu dan uji dengan soalan yang sama. Penutup bahagian ini: tiga aplikasi, langkah yang sama, iaitu cari tetapan, letak templat, simpan, uji. [Nama menu ikut paparan Oktober 2026; semak semula sebelum sesi.]</aside>
+</section>
+
+<!-- ============ 31 DEMO ============ -->
 <section class="slide light" data-title="Demo: kertas lepas ke tutor" data-section="Kemahiran prompt" data-widget="chat">
   <div class="demo">
     <div class="left">
@@ -537,7 +689,7 @@
   <aside class="notes">[5 minit] Simulasi ini berfungsi tanpa internet. Tekan → untuk setiap mesej. Jika masa dan internet mengizinkan, tukar ke pelayar dan buat demo sebenar (kongsi tetingkap pelayar dalam mesyuarat). Fakta pengiraan: t = 12.7413 ÷ 0.9123 ≈ 13.97; df = n − k = 32 − 3 = 29; t kritikal satu hujung 5% = 1.699; maka X2 signifikan mempengaruhi harga secara positif. Tekankan langkah 4: kesilapan pelajar (1.40) dikesan dan dia masih perlu membuat kesimpulan sendiri.</aside>
 </section>
 
-<!-- ============ 28 RED FLAGS ============ -->
+<!-- ============ 32 RED FLAGS ============ -->
 <section class="slide dark" data-title="5 lampu merah" data-section="Integriti">
   <span class="label rise" style="--i:0;color:var(--signal)">Hati-hati</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">5 lampu <em>merah</em> bila guna AI.</h2>
@@ -552,7 +704,7 @@
   <aside class="notes">[3 minit] Satu ayat setiap kad. Halusinasi: rujuk semula kes Soalan 3(c) dan demo t tadi. Bergantung: cuba mula tugasan 10 minit pertama tanpa AI. Tutup dengan kad oren.</aside>
 </section>
 
-<!-- ============ 29 FYP SHORTCUT ============ -->
+<!-- ============ 33 FYP SHORTCUT ============ -->
 <section class="slide dark" data-title="Kes FYP: AI baca untuk anda" data-section="Integriti">
   <span class="label rise" style="--i:0;color:var(--signal)">Kes biasa · FYP, tesis, assignment artikel jurnal</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Bila AI yang <em>membaca</em>, siapa yang belajar?</h2>
@@ -567,7 +719,7 @@
   <aside class="notes">[3 minit] Ini masalah paling biasa yang penyelia FYP dan tesis lihat sekarang. Tekan → untuk setiap domino. 1) Pelajar letak 30 PDF dan minta AI ringkaskan; terasa produktif. 2) Kajian literatur ditulis daripada ringkasan, bukan artikel asal. 3) Ringkasan AI boleh salah faham dapatan, tertinggal kaedah dan had kajian, malah mereka rujukan. 4) Gap kajian ialah idea yang lahir daripada membaca banyak artikel dan nampak apa yang belum dikaji; ringkasan tidak memberi anda itu. Semua orang yang guna prompt sama mendapat idea yang sama. 5) Viva: penyelia atau pemeriksa bertanya soalan yang hanya boleh dijawab jika anda sendiri membaca. Langkah 6: kemahiran yang hilang ialah kemahiran yang majikan dan program pascasiswazah cari. Tanya di Chat: "Pernah minta AI ringkaskan artikel tanpa baca? Taip YA atau TIDAK." [Jika ada, kongsi pengalaman sebenar sebagai penyelia, tanpa nama pelajar.]</aside>
 </section>
 
-<!-- ============ 30 READ WITH AI ============ -->
+<!-- ============ 34 READ WITH AI ============ -->
 <section class="slide light" data-title="Cara betul membaca artikel" data-section="Integriti">
   <span class="label rise" style="--i:0;color:var(--signal-deep)">Cara betul · artikel jurnal</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Baca sendiri. AI jadi <em>pembantu</em> membaca.</h2>
@@ -589,7 +741,7 @@
   <aside class="notes">[3 minit] Bezanya: AI sebelum dan selepas membaca, bukan sebagai pengganti membaca. Tekan → untuk setiap langkah. 1) Sebelum baca: minta AI terangkan istilah supaya artikel lebih mudah difahami. 2) Baca sendiri dan isi jadual matriks literatur (pengarang, tahun, soalan kajian, kaedah, data, dapatan, had). Jadual inilah yang melahirkan gap kajian. 3) Selepas baca: tulis ringkasan sendiri dahulu, kemudian guna prompt di kanan supaya AI menguji anda. 4) Setiap petikan, angka dan rujukan mesti disemak dalam artikel asal. [Artikel daripada pangkalan data perpustakaan: semak syarat lesen dan polisi kursus sebelum memuat naik PDF ke alat AI.] Klik "Salin" dan letak prompt di chat mesyuarat.</aside>
 </section>
 
-<!-- ============ 31 3 QUESTIONS ============ -->
+<!-- ============ 35 3 QUESTIONS ============ -->
 <section class="slide light" data-title="Ujian 3 soalan" data-section="Integriti" data-widget="check">
   <span class="label rise" style="--i:0;color:var(--signal-deep)">Ambil tangkapan skrin slaid ini</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Ujian 3 soalan sebelum tekan <em>Enter</em>.</h2>
@@ -602,7 +754,7 @@
   <aside class="notes">[3 minit] Senario 1: "Esok assignment due, anda nak minta AI tulis pengenalan." Tanya setiap soalan; peserta taip YA atau TIDAK di Chat; klik ikut majoriti. Satu TIDAK sudah cukup untuk berhenti. Senario 2: "Minta AI buat soalan kembar daripada kertas lepas" (tiga kali YA).</aside>
 </section>
 
-<!-- ============ 32 ROUTINE ============ -->
+<!-- ============ 36 ROUTINE ============ -->
 <section class="slide sand" data-title="Rutin mingguan" data-section="Pelan tindakan" data-widget="timeline">
   <span class="label rise" style="--i:0;color:var(--signal-deep)">Pelan tindakan</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Rutin mingguan pelajar <em>BIJAK</em>.</h2>
@@ -617,7 +769,7 @@
   <aside class="notes">[2 minit] Tekan → untuk setiap peringkat. Strategi BIJAK ialah rutin kecil setiap minggu. Minggu peperiksaan: jawab kertas lepas seperti BEEQK2023 ikut masa sebenar (7.5 minit setiap bahagian), baru minta AI semak.</aside>
 </section>
 
-<!-- ============ 33 PLEDGE ============ -->
+<!-- ============ 37 PLEDGE ============ -->
 <section class="slide signal" data-title="Cabaran 7 Hari" data-section="Pelan tindakan" data-widget="commit">
   <div class="head rise" style="--i:0"><span class="label tag">Aktiviti 05 · Komitmen di chat</span><button class="btn" data-timer="90"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg>1:30</button></div>
   <h2 class="h-m rise" style="--i:1;margin-top:28px">Cabaran 7 Hari <em>BIJAK</em>.</h2>
@@ -627,13 +779,13 @@
   <aside class="notes">[3 minit] Minta semua salin ayat ini dan lengkapkan di Chat. Selepas 1:30, salin chat dan tekan Ctrl+V: 6 komitmen terkini dipaparkan sebagai nota. Anda juga boleh taip sendiri dalam ruang kosong dan tekan "Letak ke dinding". Cadangan: peserta tangkap skrin komitmen sendiri dan semak semula selepas 7 hari.</aside>
 </section>
 
-<!-- ============ 34 QUIZ ============ -->
+<!-- ============ 38 QUIZ ============ -->
 <section class="slide dark" data-title="Kuiz kilat" data-section="Pelan tindakan" data-widget="quiz">
   <div class="quiz"></div>
   <aside class="notes">[6 minit] Kuiz individu melalui Chat. Setiap soalan: 20 saat, peserta taip A, B, C atau D. Jawapan pertama setiap nama sahaja dikira. Bila masa tamat (atau tekan → untuk dedah), salin chat dan tekan Ctrl+V: setiap jawapan betul mendapat 100 mata, dan taburan jawapan dipaparkan pada pilihan. Boleh juga taip nama secara manual di ruang "Tambah nama" untuk beri mata. Tekan → untuk soalan seterusnya. Selepas 6 soalan: papan markah 6 teratas dan konfeti. [Hadiah untuk juara.]</aside>
 </section>
 
-<!-- ============ 35 CLOSE ============ -->
+<!-- ============ 39 CLOSE ============ -->
 <section class="slide dark" data-title="Penutup" data-section="Penutup">
   <span class="label rise" style="--i:0;color:var(--signal)">Penutup</span>
   <h2 class="close-st rise" style="--i:1">AI tidak akan belajar untuk anda. <em>Tetapi ia boleh buat anda belajar dengan lebih bijak.</em></h2>
