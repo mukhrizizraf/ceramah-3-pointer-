@@ -669,16 +669,19 @@
   widgets.swarm = (s, base) => {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return base;
     const cv = $('.swarm', s), g = cv.getContext('2d'), badge = $('.badge', s), stage = $('#stage');
-    // split the title into letters that fly in from scattered positions
+    // split the title into letters that fly in from scattered positions (.ch, CSS storm);
+    // the inner .cz carries the live zoom driven by bees, the mouse and a periodic wave
+    const L = [];
     $$('.cover-title .l1, .cover-title .l2', s).forEach((line, li) => {
       const txt = line.textContent;
       line.textContent = ''; line.classList.remove('rise');
       [...txt].forEach((ch, k) => {
         if (ch === ' ') { line.append(' '); return; }
-        const sp = document.createElement('span'), a = Math.random() * Math.PI * 2, d = 420 + Math.random() * 620;
-        sp.className = 'ch'; sp.textContent = ch;
+        const sp = document.createElement('span'), cz = document.createElement('span'), a = Math.random() * Math.PI * 2, d = 420 + Math.random() * 620;
+        sp.className = 'ch'; cz.className = 'cz'; cz.textContent = ch; sp.append(cz);
         sp.style.cssText = `--dx:${Math.round(Math.cos(a) * d)}px;--dy:${Math.round(Math.sin(a) * d * 0.6)}px;--dr:${Math.round(Math.random() * 220 - 110)}deg;--d:${li * 240 + k * 42}ms`;
         line.append(sp);
+        L.push({ el: cz, li, tilt: k % 2 ? 1 : -1, x: 0, y: 0, h: 0, drawn: 0 });
       });
     });
     const N = 170, TAU = Math.PI * 2;
@@ -760,12 +763,76 @@
         g.fillStyle = '#12151D'; g.fillRect(-4, -3.6, 2, 7.2); g.fillRect(0.5, -4.2, 2, 8.4); g.beginPath(); g.arc(8, 0, 3, 0, TAU); g.fill();
       }
     };
-    const frame = (now) => { const dt = Math.min(2.5, (now - last) / 16.667 || 1); last = now; step(now, dt); draw(); raf = requestAnimationFrame(frame); };
+    // title letters zoom, lift and turn honey-coloured when bees, the mouse or the wave pass them
+    let introEnd = 0, waveAt = 0, waveT0 = -1e9, measured = false;
+    const COL = [[242, 237, 227], [255, 90, 31]], HOT = [255, 201, 60];
+    const measure = () => { L.forEach((l) => { const sp = l.el.parentNode; l.x = sp.offsetLeft + sp.offsetWidth / 2; l.y = sp.offsetTop + sp.offsetHeight / 2; }); measured = true; };
+    if (document.fonts) document.fonts.ready.then(() => { measured = false; });
+    const zoomLetters = (now, dt) => {
+      if (now < introEnd) return;
+      if (!measured) measure();
+      if (now > waveAt) { waveT0 = now; waveAt = now + 7500; }
+      const mouse = now - mT < 2500;
+      for (const l of L) {
+        const wt = now - waveT0 - l.li * 450; // line 2 follows line 1
+        const wave = wt > 0 && wt < 1700 ? Math.exp(-(((l.x - 60 - wt * 1.15) / 110) ** 2)) * 0.85 : 0;
+        let bees = 0;
+        for (const b of B) if (Math.abs(b.x - l.x) < 85 && Math.abs(b.y - l.y) < 95) bees++;
+        const md = mouse ? Math.hypot(l.x - mx, l.y - my) : 1e4;
+        const T = Math.max(wave, Math.min(1, bees * 0.3), md < 260 ? 1 - md / 260 : 0);
+        l.h += (T - l.h) * Math.min(1, (T > l.h ? 0.22 : 0.07) * dt);
+        if (Math.abs(l.h - l.drawn) < 0.004) continue;
+        l.drawn = l.h;
+        if (l.h < 0.004) { l.el.style.transform = l.el.style.color = ''; continue; }
+        const c = COL[l.li], m = Math.min(1, l.h * 1.3);
+        l.el.style.transform = `translateY(${(-l.h * 18).toFixed(1)}px) rotate(${(l.tilt * l.h * 4).toFixed(2)}deg) scale(${(1 + l.h * 0.26).toFixed(3)})`;
+        l.el.style.color = `rgb(${c.map((v, i) => Math.round(v + (HOT[i] - v) * m)).join(',')})`;
+      }
+    };
+    // swarm buzz: detuned saws through a bandpass with a wing-flutter tremolo; a low hum while
+    // orbiting that swells and rises in pitch as the bees speed up. Browsers keep it silent
+    // until the first click or key press.
+    const buzz = {
+      n: null,
+      start() {
+        const c = Sound.ensure(); if (!c) return;
+        const f = c.createBiquadFilter(), am = c.createGain(), out = c.createGain(), lfo = c.createOscillator(), lg = c.createGain();
+        f.type = 'bandpass'; f.frequency.value = 600; f.Q.value = 0.9; am.gain.value = 0.7; out.gain.value = 0;
+        lfo.frequency.value = 23; lg.gain.value = 0.3; lfo.connect(lg).connect(am.gain); lfo.start();
+        const oscs = [-70, 0, 90].map((det) => { const o = c.createOscillator(); o.type = 'sawtooth'; o.frequency.value = 180; o.detune.value = det; o.connect(f); o.start(); return o; });
+        f.connect(am).connect(out).connect(c.destination);
+        this.n = { c, f, out, oscs, lfo };
+      },
+      set(level) {
+        const n = this.n; if (!n) return;
+        const t = n.c.currentTime;
+        n.out.gain.setTargetAtTime(Sound.muted ? 0 : 0.012 + level * 0.09, t, 0.12);
+        n.oscs.forEach((o) => o.frequency.setTargetAtTime(180 * (1 + level * 0.35), t, 0.15));
+        n.f.frequency.setTargetAtTime(500 + level * 900, t, 0.15);
+      },
+      stop() {
+        const n = this.n; if (!n) return;
+        this.n = null; n.out.gain.setTargetAtTime(0, n.c.currentTime, 0.08);
+        setTimeout(() => { n.oscs.forEach((o) => o.stop()); n.lfo.stop(); n.out.disconnect(); }, 600);
+      },
+    };
+    const wake = () => { if (raf && !Sound.muted) Sound.ensure(); };
+    addEventListener('pointerdown', wake, true); addEventListener('keydown', wake, true);
+    let tick = 0;
+    const hum = () => {
+      if (++tick % 4) return;
+      if (!buzz.n && !Sound.muted) buzz.start();
+      let sum = 0, fast = 0;
+      for (const b of B) { const v = Math.hypot(b.vx, b.vy); sum += v; if (v > 7) fast++; }
+      buzz.set(Math.min(1, Math.max(0, (sum / N - 2.5) / 8, fast / 45)));
+    };
+    const frame = (now) => { const dt = Math.min(2.5, (now - last) / 16.667 || 1); last = now; step(now, dt); zoomLetters(now, dt); draw(); hum(); raf = requestAnimationFrame(frame); };
     return extend(base, {
       enter(dir) {
         base.enter(dir);
         cancelAnimationFrame(raf); clearTimeout(popT);
         const now = performance.now(); last = now; nextTour = 0;
+        introEnd = dir < 0 ? now : now + 1900; waveAt = introEnd + 1200;
         if (dir < 0) { // coming back (or ?all): no replay, bees already home
           s.classList.remove('storm', 'intro');
           B.forEach((b) => { b.mode = 'orbit'; Object.assign(b, orbitPt(b, now)); b.vx = b.vy = 0; });
@@ -776,7 +843,10 @@
         }
         raf = requestAnimationFrame(frame);
       },
-      leave() { base.leave(); cancelAnimationFrame(raf); clearTimeout(popT); raf = 0; },
+      leave() {
+        base.leave(); cancelAnimationFrame(raf); clearTimeout(popT); raf = 0; buzz.stop();
+        L.forEach((l) => { l.h = l.drawn = 0; l.el.style.transform = l.el.style.color = ''; });
+      },
     });
   };
 
