@@ -52,6 +52,9 @@ KAWALAN
 
 AKTIVITI DALAM SLAID
   Slaid 1   Pemanasan: "Hadir + fakulti" di chat > Ctrl+V (kumpul nama)
+            Animasi lebah: paparkan semasa peserta masuk. Gerakkan tetikus
+            untuk halau lebah, klik lencana AI untuk "letupan". Animasi
+            berhenti bila ke slaid 2.
   Slaid 2   Evolusi cara belajar (2019 > PKP > tanpa kertas > copy-paste AI):
             tekan → untuk setiap era, chat "1/2/3/4"
   Slaid 3   Perlumbaan AI 2022–2026: tekan → untuk setiap tahun

@@ -904,3 +904,18 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 .crit-foot { display: block; }
 .crit-foot .mp-try { margin-top: 0; padding-top: 16px; }
 .crit-foot .mp-try p { font-size: 25px; }
+
+/* cover motion: headline storm, hive pop, slow ring orbit; bees are drawn on .swarm by app.js */
+.cover .swarm { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; pointer-events: none; z-index: 5; }
+.cover-title .ch { display: inline-block; }
+.cover.storm .cover-title .ch { animation: storm 1.25s var(--ease) both; animation-delay: var(--d); }
+@keyframes storm { from { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--dr)) scale(.5); filter: blur(10px); } 55% { filter: blur(0); } }
+.badge { cursor: pointer; }
+.badge .core { transition: transform .9s cubic-bezier(.3, 1.55, .45, 1); }
+.badge svg.ring { transition: opacity .8s .3s; }
+.cover.intro .badge .core { transform: scale(.15); transition: none; }
+.cover.intro .badge svg.ring { opacity: 0; transition: none; }
+.cover.active .badge svg.ring { animation: spin 140s linear infinite; }
+.badge.burst .core { animation: hivePop .6s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes hivePop { 30% { transform: scale(1.14); } }
+@media (prefers-reduced-motion: reduce) { .cover .swarm { display: none; } .cover.active .badge svg.ring { animation: none; } }

@@ -663,6 +663,123 @@
     return ctl;
   };
 
+  /* ---------- cover: headline storm + bee swarm around the AI badge ----------
+     Bees are large, solid and fairly slow so Webex compression keeps them legible.
+     The loop runs only while the cover is active. */
+  widgets.swarm = (s, base) => {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return base;
+    const cv = $('.swarm', s), g = cv.getContext('2d'), badge = $('.badge', s), stage = $('#stage');
+    // split the title into letters that fly in from scattered positions
+    $$('.cover-title .l1, .cover-title .l2', s).forEach((line, li) => {
+      const txt = line.textContent;
+      line.textContent = ''; line.classList.remove('rise');
+      [...txt].forEach((ch, k) => {
+        if (ch === ' ') { line.append(' '); return; }
+        const sp = document.createElement('span'), a = Math.random() * Math.PI * 2, d = 420 + Math.random() * 620;
+        sp.className = 'ch'; sp.textContent = ch;
+        sp.style.cssText = `--dx:${Math.round(Math.cos(a) * d)}px;--dy:${Math.round(Math.sin(a) * d * 0.6)}px;--dr:${Math.round(Math.random() * 220 - 110)}deg;--d:${li * 240 + k * 42}ms`;
+        line.append(sp);
+      });
+    });
+    const N = 170, TAU = Math.PI * 2;
+    const hive = () => ({ x: badge.offsetLeft + badge.offsetWidth / 2, y: badge.offsetTop + badge.offsetHeight / 2 });
+    const bez = (p, u) => { const v = 1 - u; return { x: v * v * v * p[0].x + 3 * v * v * u * p[1].x + 3 * v * u * u * p[2].x + u * u * u * p[3].x, y: v * v * v * p[0].y + 3 * v * v * u * p[1].y + 3 * v * u * u * p[2].y + u * u * u * p[3].y }; };
+    const ease = (u) => (u < 0.5 ? 2 * u * u : 1 - (-2 * u + 2) ** 2 / 2);
+    const B = Array.from({ length: N }, (_, i) => ({
+      x: 0, y: 0, vx: 0, vy: 0, i,
+      R: 175 + Math.random() * 115, th: Math.random() * TAU, w: (0.005 + Math.random() * 0.009) * (Math.random() < 0.82 ? 1 : -1),
+      sc: 0.95 + Math.random() * 0.45, ph: Math.random() * TAU, mode: 'orbit', path: null, t0: 0, dur: 0,
+    }));
+    const orbitPt = (b, now) => {
+      const c = hive(), r = b.R + Math.sin(now * 0.0013 + b.ph) * 24;
+      return { x: c.x + Math.cos(b.th) * r * 0.95, y: c.y + Math.sin(b.th) * r * 0.6 + Math.sin(now * 0.002 + b.ph * 2) * 10 };
+    };
+    const fly = (b, now, pts, delay, dur, mode) => { b.mode = mode; b.path = pts; b.t0 = now + delay; b.dur = dur; };
+    let raf = 0, last = 0, nextTour = 0, popT = 0, mx = -1e4, my = -1e4, mT = 0;
+    addEventListener('mousemove', (e) => {
+      const r = stage.getBoundingClientRect();
+      mx = ((e.clientX - r.left) * 1920) / r.width; my = ((e.clientY - r.top) * 1080) / r.height; mT = performance.now();
+    });
+    badge.addEventListener('click', () => {
+      const c = hive();
+      B.forEach((b) => { const a = Math.atan2(b.y - c.y, b.x - c.x) + (Math.random() - 0.5) * 0.6, f = 13 + Math.random() * 11; b.vx += Math.cos(a) * f; b.vy += Math.sin(a) * f; });
+      badge.classList.remove('burst'); void badge.offsetWidth; badge.classList.add('burst');
+    });
+    const intro = (now) => {
+      const c = hive();
+      B.forEach((b) => {
+        const y0 = 220 + Math.random() * 620;
+        b.x = -40 - Math.random() * 260; b.y = y0; b.vx = 6; b.vy = 0;
+        b.th = Math.PI + (Math.random() - 0.5) * 2.8; // arrive around the hive's left half, then fan out
+        const end = { x: c.x + Math.cos(b.th) * b.R * 0.95, y: c.y + Math.sin(b.th) * b.R * 0.6 };
+        fly(b, now, [{ x: b.x, y: y0 }, { x: 420 + Math.random() * 420, y: 300 + Math.random() * 160 }, { x: 900 + Math.random() * 300, y: 600 + Math.random() * 200 }, end], (b.i / N) * 1300, 1500 + Math.random() * 500, 'stream');
+      });
+    };
+    const tour = (now) => {
+      const pick = B.filter((b) => b.mode === 'orbit').sort(() => Math.random() - 0.5).slice(0, 36);
+      const lo = Math.random() < 0.5; // over line 1 or line 2 of the title
+      pick.forEach((b, k) => fly(b, now, [{ x: b.x, y: b.y }, { x: 1100, y: lo ? 260 : 560 }, { x: 240 + Math.random() * 260, y: (lo ? 340 : 620) + Math.random() * 120 }, null], k * 30, 3400 + Math.random() * 600, 'tour'));
+    };
+    const step = (now, dt) => {
+      if (now > nextTour) { if (nextTour) tour(now); nextTour = now + 8500; }
+      const mouse = now - mT < 2500;
+      for (const b of B) {
+        let tx, ty, k = 0.032, damp = 0.9;
+        b.th += b.w * dt;
+        if (b.mode !== 'orbit') {
+          const u = Math.min(1, Math.max(0, (now - b.t0) / b.dur));
+          const pts = b.path.slice(); if (!pts[3]) pts[3] = orbitPt(b, now);
+          ({ x: tx, y: ty } = bez(pts, ease(u)));
+          k = 0.09; damp = 0.8;
+          if (u >= 1) b.mode = 'orbit';
+        } else ({ x: tx, y: ty } = orbitPt(b, now));
+        let ax = (tx - b.x) * k + Math.sin(now * 0.003 + b.ph * 3) * 0.25, ay = (ty - b.y) * k + Math.cos(now * 0.0027 + b.ph * 5) * 0.25;
+        if (mouse) {
+          const dx = b.x - mx, dy = b.y - my, d = Math.hypot(dx, dy);
+          if (d < 190 && d > 0.1) { const f = (1 - d / 190) * 3.2; ax += (dx / d) * f; ay += (dy / d) * f; }
+        }
+        b.vx = (b.vx + ax * dt) * damp ** dt; b.vy = (b.vy + ay * dt) * damp ** dt;
+        const sp = Math.hypot(b.vx, b.vy); if (sp > 18) { b.vx *= 18 / sp; b.vy *= 18 / sp; }
+      }
+      for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) { // keep bees from stacking on each other
+        const a = B[i], c = B[j], dx = a.x - c.x, dy = a.y - c.y, d2 = dx * dx + dy * dy;
+        if (d2 < 324 && d2 > 0.01) { const d = Math.sqrt(d2), f = ((18 - d) / d) * 0.06; a.vx += dx * f; a.vy += dy * f; c.vx -= dx * f; c.vy -= dy * f; }
+      }
+      for (const b of B) { b.x += b.vx * dt; b.y += b.vy * dt; }
+    };
+    const draw = () => {
+      g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, 1920, 1080);
+      g.strokeStyle = 'rgba(255, 201, 60, .22)'; g.lineCap = 'round'; g.lineWidth = 3; g.beginPath();
+      for (const b of B) if (Math.abs(b.vx) + Math.abs(b.vy) > 2) { g.moveTo(b.x, b.y); g.lineTo(b.x - b.vx * 3, b.y - b.vy * 3); }
+      g.stroke();
+      for (const b of B) {
+        const a = Math.atan2(b.vy, b.vx), c = Math.cos(a) * b.sc, sn = Math.sin(a) * b.sc;
+        g.setTransform(c, sn, -sn, c, b.x, b.y);
+        g.fillStyle = 'rgba(242, 237, 227, .55)'; g.beginPath(); g.ellipse(-2, -5, 6, 3.2, -0.45, 0, TAU); g.ellipse(-2, 5, 6, 3.2, 0.45, 0, TAU); g.fill();
+        g.fillStyle = '#FFC93C'; g.beginPath(); g.ellipse(0, 0, 8.5, 4.8, 0, 0, TAU); g.fill();
+        g.fillStyle = '#12151D'; g.fillRect(-4, -3.6, 2, 7.2); g.fillRect(0.5, -4.2, 2, 8.4); g.beginPath(); g.arc(8, 0, 3, 0, TAU); g.fill();
+      }
+    };
+    const frame = (now) => { const dt = Math.min(2.5, (now - last) / 16.667 || 1); last = now; step(now, dt); draw(); raf = requestAnimationFrame(frame); };
+    return extend(base, {
+      enter(dir) {
+        base.enter(dir);
+        cancelAnimationFrame(raf); clearTimeout(popT);
+        const now = performance.now(); last = now; nextTour = 0;
+        if (dir < 0) { // coming back (or ?all): no replay, bees already home
+          s.classList.remove('storm', 'intro');
+          B.forEach((b) => { b.mode = 'orbit'; Object.assign(b, orbitPt(b, now)); b.vx = b.vy = 0; });
+        } else {
+          s.classList.remove('storm'); void s.offsetWidth; s.classList.add('storm', 'intro');
+          intro(now);
+          popT = setTimeout(() => s.classList.remove('intro'), 1750); // hive pops as the first bees arrive
+        }
+        raf = requestAnimationFrame(frame);
+      },
+      leave() { base.leave(); cancelAnimationFrame(raf); clearTimeout(popT); raf = 0; },
+    });
+  };
+
   /* ---------- build controllers ---------- */
   slides.forEach((s) => { const base = stepCtl(s); const w = s.dataset.widget; s.ctl = w && widgets[w] ? widgets[w](s, base) : base; });
 
