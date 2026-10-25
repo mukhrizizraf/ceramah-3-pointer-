@@ -921,4 +921,16 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 .cover.active .badge svg.ring { animation: spin 140s linear infinite; }
 .badge.burst .core { animation: hivePop .6s cubic-bezier(.3, 1.6, .5, 1); }
 @keyframes hivePop { 30% { transform: scale(1.14); } }
-@media (prefers-reduced-motion: reduce) { .cover .swarm { display: none; } .cover.active .badge svg.ring, .cover.active:not(.intro) .cover-title { animation: none; } }
+/* subtitle and footer words; the slogan highlights "jurulatih" and strikes "jalan pintas" on a loop */
+.cover .wd, .cover .wz { display: inline-block; }
+.cover .wz { transform-origin: 50% 85%; }
+.cover-foot b span { font-family: inherit; font-size: inherit; letter-spacing: inherit; text-transform: none; color: inherit; }
+.cover.storm .wd { animation: wordIn .8s var(--ease) both; animation-delay: var(--d); }
+@keyframes wordIn { from { opacity: 0; transform: translateY(34px) scale(.92); filter: blur(6px); } }
+.cover.active .wd.hl .wz { background: linear-gradient(rgba(255, 201, 60, .5), rgba(255, 201, 60, .5)) 0 92% / 0% 36% no-repeat; animation: hlSweep 8s 2.8s infinite; }
+@keyframes hlSweep { 0% { background-size: 0% 36%; background-position: 0 92%; } 10%, 70% { background-size: 100% 36%; background-position: 0 92%; } 71% { background-position: 100% 92%; } 82%, 100% { background-size: 0% 36%; background-position: 100% 92%; } }
+.cover.active .wd.st .wz { background: linear-gradient(var(--signal), var(--signal)) 0 58% / 0% 5px no-repeat; animation: stSweep 8s 3.4s infinite; }
+.cover.active .wd.st + .wd.st .wz { animation-delay: 3.7s; }
+@keyframes stSweep { 0% { background-size: 0% 5px; } 10%, 70% { background-size: 100% 5px; } 82%, 100% { background-size: 0% 5px; } }
+.cover.active .marquee .track { animation: marq 60s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .cover .swarm { display: none; } .cover.active .badge svg.ring, .cover.active:not(.intro) .cover-title, .cover.active .marquee .track { animation: none; } }

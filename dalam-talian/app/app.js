@@ -681,9 +681,37 @@
         sp.className = 'ch'; cz.className = 'cz'; cz.textContent = ch; sp.append(cz);
         sp.style.cssText = `--dx:${Math.round(Math.cos(a) * d)}px;--dy:${Math.round(Math.sin(a) * d * 0.6)}px;--dr:${Math.round(Math.random() * 220 - 110)}deg;--d:${li * 240 + k * 42}ms`;
         line.append(sp);
-        L.push({ el: cz, li, tilt: k % 2 ? 1 : -1, x: 0, y: 0, h: 0, drawn: 0 });
+        L.push({ el: cz, li, tilt: k % 2 ? 1 : -1, x: 0, y: 0, h: 0, drawn: 0, z: 0.26, lift: 18, rot: 4, ry: 95 });
       });
     });
+    // subtitle and footer lines: words drop in (.wd, CSS) and take a gentler live zoom (.wz)
+    const words = (el, row, d0) => {
+      const txt = el.textContent.trim();
+      el.textContent = '';
+      return txt.split(/\s+/).map((w, k) => {
+        if (k) el.append(' ');
+        const wd = document.createElement('span'), wz = document.createElement('span');
+        wd.className = 'wd'; wz.className = 'wz'; wz.textContent = w; wd.append(wz);
+        wd.style.setProperty('--d', `${d0 + k * 70}ms`);
+        el.append(wd);
+        L.push({ el: wz, li: row, tilt: k % 2 ? 1 : -1, x: 0, y: 0, h: 0, drawn: 0, z: 0.1, lift: 7, rot: 2, ry: 55 });
+        return wd;
+      });
+    };
+    const sub = $('.cover-sub', s);
+    sub.classList.remove('rise');
+    words(sub, 2, 700).forEach((w) => { // the slogan acts itself out: coach highlighted, shortcut struck through
+      if (/^jurulatih/.test(w.textContent)) w.classList.add('hl');
+      if (/^(jalan|pintas)/.test(w.textContent)) w.classList.add('st');
+    });
+    $$('.cover-foot b', s).forEach((b, i) => words(b, 3, 1100 + i * 250));
+    L.forEach((l) => { l.c = (getComputedStyle(l.el).color.match(/\d+/g) || [242, 237, 227]).slice(0, 3).map(Number); });
+    // mono lines decode from scrambled glyphs on entry, then one re-scrambles now and then
+    const GLY = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#/<>*+';
+    const SC = $$('.cover-top > span, .cover-foot div > span', s).map((el) => ({ el, orig: el.textContent, t0: 0, dur: 0, on: false }));
+    const scramble = (x, now, delay, dur) => { x.t0 = now + delay; x.dur = dur; x.on = true; };
+    const track = $('.marquee .track', s);
+    track.innerHTML += track.innerHTML; // doubled so the CSS scroll to -50% loops seamlessly
     const N = 170, TAU = Math.PI * 2;
     const hive = () => ({ x: badge.offsetLeft + badge.offsetWidth / 2, y: badge.offsetTop + badge.offsetHeight / 2 });
     const bez = (p, u) => { const v = 1 - u; return { x: v * v * v * p[0].x + 3 * v * v * u * p[1].x + 3 * v * u * u * p[2].x + u * u * u * p[3].x, y: v * v * v * p[0].y + 3 * v * v * u * p[1].y + 3 * v * u * u * p[2].y + u * u * u * p[3].y }; };
@@ -763,10 +791,24 @@
         g.fillStyle = '#12151D'; g.fillRect(-4, -3.6, 2, 7.2); g.fillRect(0.5, -4.2, 2, 8.4); g.beginPath(); g.arc(8, 0, 3, 0, TAU); g.fill();
       }
     };
-    // title letters zoom, lift and turn honey-coloured when bees, the mouse or the wave pass them
-    let introEnd = 0, waveAt = 0, waveT0 = -1e9, measured = false;
-    const COL = [[242, 237, 227], [255, 90, 31]], HOT = [255, 201, 60];
-    const measure = () => { L.forEach((l) => { const sp = l.el.parentNode; l.x = sp.offsetLeft + sp.offsetWidth / 2; l.y = sp.offsetTop + sp.offsetHeight / 2; }); measured = true; };
+    // letters and words zoom, lift and turn honey-coloured when bees, the mouse or the wave pass them
+    let introEnd = 0, waveAt = 0, waveT0 = -1e9, measured = false, nextScr = 0, scrTick = 0;
+    const HOT = [255, 201, 60];
+    const measure = () => {
+      const st = stage.getBoundingClientRect(), k = 1920 / st.width;
+      L.forEach((l) => { const r = l.el.parentNode.getBoundingClientRect(); l.x = (r.left + r.width / 2 - st.left) * k; l.y = (r.top + r.height / 2 - st.top) * k; });
+      measured = true;
+    };
+    const unscramble = (now) => {
+      if (now > nextScr) { if (nextScr) scramble(SC[(Math.random() * SC.length) | 0], now, 0, 700); nextScr = now + 6000; }
+      if (++scrTick % 3) return; // a stepped flicker reads as "decoding"
+      for (const x of SC) {
+        if (!x.on) continue;
+        const p = (now - x.t0) / x.dur;
+        if (p >= 1) { x.el.textContent = x.orig; x.on = false; continue; }
+        x.el.textContent = [...x.orig].map((ch, i) => (ch === ' ' || ch === '·' || i / x.orig.length < p ? ch : GLY[(Math.random() * GLY.length) | 0])).join('');
+      }
+    };
     if (document.fonts) document.fonts.ready.then(() => { measured = false; });
     const zoomLetters = (now, dt) => {
       if (now < introEnd) return;
@@ -777,16 +819,16 @@
         const wt = now - waveT0 - l.li * 450; // line 2 follows line 1
         const wave = wt > 0 && wt < 1700 ? Math.exp(-(((l.x - 60 - wt * 1.15) / 110) ** 2)) * 0.85 : 0;
         let bees = 0;
-        for (const b of B) if (Math.abs(b.x - l.x) < 85 && Math.abs(b.y - l.y) < 95) bees++;
+        for (const b of B) if (Math.abs(b.x - l.x) < 85 && Math.abs(b.y - l.y) < l.ry) bees++;
         const md = mouse ? Math.hypot(l.x - mx, l.y - my) : 1e4;
         const T = Math.max(wave, Math.min(1, bees * 0.3), md < 260 ? 1 - md / 260 : 0);
         l.h += (T - l.h) * Math.min(1, (T > l.h ? 0.22 : 0.07) * dt);
         if (Math.abs(l.h - l.drawn) < 0.004) continue;
         l.drawn = l.h;
         if (l.h < 0.004) { l.el.style.transform = l.el.style.color = ''; continue; }
-        const c = COL[l.li], m = Math.min(1, l.h * 1.3);
-        l.el.style.transform = `translateY(${(-l.h * 18).toFixed(1)}px) rotate(${(l.tilt * l.h * 4).toFixed(2)}deg) scale(${(1 + l.h * 0.26).toFixed(3)})`;
-        l.el.style.color = `rgb(${c.map((v, i) => Math.round(v + (HOT[i] - v) * m)).join(',')})`;
+        const m = Math.min(1, l.h * 1.3);
+        l.el.style.transform = `translateY(${(-l.h * l.lift).toFixed(1)}px) rotate(${(l.tilt * l.h * l.rot).toFixed(2)}deg) scale(${(1 + l.h * l.z).toFixed(3)})`;
+        l.el.style.color = `rgb(${l.c.map((v, i) => Math.round(v + (HOT[i] - v) * m)).join(',')})`;
       }
     };
     // swarm buzz: detuned saws through a bandpass with a wing-flutter tremolo; a low hum while
@@ -826,13 +868,14 @@
       for (const b of B) { const v = Math.hypot(b.vx, b.vy); sum += v; if (v > 7) fast++; }
       buzz.set(Math.min(1, Math.max(0, (sum / N - 2.5) / 8, fast / 45)));
     };
-    const frame = (now) => { const dt = Math.min(2.5, (now - last) / 16.667 || 1); last = now; step(now, dt); zoomLetters(now, dt); draw(); hum(); raf = requestAnimationFrame(frame); };
+    const frame = (now) => { const dt = Math.min(2.5, (now - last) / 16.667 || 1); last = now; step(now, dt); zoomLetters(now, dt); unscramble(now); draw(); hum(); raf = requestAnimationFrame(frame); };
     return extend(base, {
       enter(dir) {
         base.enter(dir);
         cancelAnimationFrame(raf); clearTimeout(popT);
         const now = performance.now(); last = now; nextTour = 0;
-        introEnd = dir < 0 ? now : now + 1900; waveAt = introEnd + 1200;
+        introEnd = dir < 0 ? now : now + 1900; waveAt = introEnd + 1200; nextScr = 0;
+        if (dir >= 0) SC.forEach((x, i) => scramble(x, now, i < 2 ? 150 : 1500, 900)); // top bar first, footer with its words
         if (dir < 0) { // coming back (or ?all): no replay, bees already home
           s.classList.remove('storm', 'intro');
           B.forEach((b) => { b.mode = 'orbit'; Object.assign(b, orbitPt(b, now)); b.vx = b.vy = 0; });
@@ -846,6 +889,7 @@
       leave() {
         base.leave(); cancelAnimationFrame(raf); clearTimeout(popT); raf = 0; buzz.stop();
         L.forEach((l) => { l.h = l.drawn = 0; l.el.style.transform = l.el.style.color = ''; });
+        SC.forEach((x) => { x.on = false; x.el.textContent = x.orig; });
       },
     });
   };

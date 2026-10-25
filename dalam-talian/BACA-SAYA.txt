@@ -53,7 +53,7 @@ KAWALAN
 AKTIVITI DALAM SLAID
   Slaid 1   Pemanasan: "Hadir + fakulti" di chat > Ctrl+V (kumpul nama)
             Animasi lebah: paparkan semasa peserta masuk. Gerakkan tetikus
-            untuk halau lebah dan besarkan huruf tajuk, klik lencana AI
+            untuk halau lebah dan besarkan huruf/perkataan, klik lencana AI
             untuk "letupan". Bunyi dengung bermula selepas klik pertama
             (M untuk senyap). Animasi dan bunyi berhenti bila ke slaid 2.
   Slaid 2   Evolusi cara belajar (2019 > PKP > tanpa kertas > copy-paste AI):
