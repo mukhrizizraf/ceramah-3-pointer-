@@ -43,6 +43,8 @@
     },
     tick() { this.tone(1150, 0.05, 'square', 0.05); },
     pop() { this.tone(520, 0.09, 'triangle', 0.14); this.tone(780, 0.07, 'triangle', 0.08, 0.04); },
+    key() { this.tone(1700, 0.03, 'square', 0.05); this.tone(320, 0.05, 'triangle', 0.1, 0.012); },
+    thud() { this.tone(92, 0.4, 'sine', 0.42); this.tone(58, 0.45, 'triangle', 0.22, 0.02); },
     correct() { [523, 659, 784, 1047].forEach((f, i) => this.tone(f, 0.28, 'triangle', 0.15, i * 0.085)); },
     end() { [880, 660, 880, 660, 1046].forEach((f, i) => this.tone(f, 0.24, 'square', 0.08, i * 0.17)); },
     swish(up = true) {
@@ -317,8 +319,11 @@
     const max = els.reduce((m, el) => Math.max(m, +el.dataset.step || 0), 0);
     let n = 0;
     const set = (k) => {
+      const was = n;
       n = Math.max(0, Math.min(max, k));
       els.forEach((el) => el.classList.toggle('shown', +el.dataset.step <= n));
+      // data-sound="key|thud|pop…" plays when a single forward step reveals that element
+      if (n === was + 1 && s.classList.contains('active')) els.forEach((el) => { if (+el.dataset.step === n && Sound[el.dataset.sound]) Sound[el.dataset.sound](); });
       s.dataset.stepNow = n;
       s.dispatchEvent(new CustomEvent('step', { detail: n }));
     };
@@ -907,6 +912,60 @@
     ovl.open('zoom'); Sound.pop();
   }));
   $('#zoom').addEventListener('click', () => ovl.close('zoom'));
+
+  /* ---------- deck-wide motion: headings rise word by word, big numbers count up ----------
+     One-shot on entry or step, so nothing keeps moving while students read. */
+  const Motion = (() => {
+    const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // each word becomes .hw; words inside <em>/<b> keep their own copy of the tag so styling and wrapping survive
+    const cascade = (h) => {
+      let w = 0;
+      const out = document.createDocumentFragment();
+      const add = (text, tag) => text.split(/(\s+)/).forEach((part) => {
+        if (!part) return;
+        if (/^\s+$/.test(part)) { out.append(' '); return; }
+        const sp = document.createElement('span');
+        sp.className = tag ? 'hw he' : 'hw'; sp.style.setProperty('--w', w++);
+        if (tag) { const e = tag.cloneNode(false); e.textContent = part; sp.append(e); } else sp.textContent = part;
+        out.append(sp);
+      });
+      [...h.childNodes].forEach((n) => {
+        if (n.nodeType === 3) add(n.data);
+        else if (n.nodeName === 'BR') out.append(document.createElement('br'));
+        else add(n.textContent, n);
+      });
+      h.textContent = ''; h.append(out);
+      h.classList.remove('rise'); h.classList.add('hcas');
+    };
+    const COUNT = '.hall b, .cp-score b, .slip-row b, .ra b, .track b, .stat b';
+    slides.forEach((s) => {
+      if (s.classList.contains('cover')) return; // the cover runs its own storm
+      if (!calm) $$('.h-m, .h-l, .h-xl, .hall-st, .close-st, .strat .right h2', s).forEach((h) => { if (!h.closest('[data-step]')) cascade(h); });
+      s.counters = $$(COUNT, s).map((el) => {
+        const t = [...el.childNodes].find((x) => x.nodeType === 3 && /\d/.test(x.data));
+        const m = t && t.data.match(/^(\s*)(\d+(?:\.\d+)?)([\s\S]*)$/);
+        return m && { el, t, pre: m[1], v: +m[2], dec: (m[2].split('.')[1] || '').length, post: m[3], done: false, raf: 0 };
+      }).filter(Boolean);
+      if (!calm) s.addEventListener('step', () => count(s));
+    });
+    const final = (c) => { cancelAnimationFrame(c.raf); c.t.data = c.pre + c.v.toFixed(c.dec) + c.post; };
+    function count(s) {
+      if (!s.classList.contains('active')) return;
+      s.counters.forEach((c) => {
+        if (c.el.closest('[data-step]:not(.shown)')) { c.done = false; return; }
+        if (c.done) return;
+        c.done = true;
+        const t0 = performance.now(), dur = c.el.closest('.track') ? 1400 : 900; // bars fill in 1.4 s
+        const f = (now) => {
+          const p = Math.min(1, (now - t0) / dur);
+          c.t.data = c.pre + (c.v * (1 - (1 - p) ** 3)).toFixed(c.dec) + c.post;
+          if (p < 1) c.raf = requestAnimationFrame(f);
+        };
+        cancelAnimationFrame(c.raf); c.raf = requestAnimationFrame(f);
+      });
+    }
+    return { leave(s) { (s.counters || []).forEach((c) => { final(c); c.done = false; }); } };
+  })();
   $$('[data-goto]').forEach((b) => b.addEventListener('click', () => { const i = slides.findIndex((s) => s.id === b.dataset.goto); if (i >= 0) go(i, 0); }));
   $$('.copy').forEach((b) => b.addEventListener('click', () => {
     const txt = $('.prompt-text', b.closest('.prompt')).textContent.trim();
@@ -930,11 +989,12 @@
   function go(i, dir) {
     if (i < 0 || i >= slides.length) return;
     const prev = slides[cur];
-    if (prev !== slides[i]) { prev.classList.remove('active'); prev.ctl.leave(); if (booted) Sound.swish(i > cur); }
+    if (prev !== slides[i]) { prev.classList.remove('active'); prev.ctl.leave(); Motion.leave(prev); if (booted) Sound.swish(i > cur); }
     if (!sessionStart && i > 0) { sessionStart = Date.now(); store.data.sessionStart = sessionStart; }
     cur = i;
     const s = slides[cur];
     s.classList.add('active'); s.ctl.enter(dir || 0);
+    if (booted && prev !== s && 'confetti' in s.dataset) Confetti.fire();
     updateChrome();
     store.data.slide = cur; store.save();
     try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) { /* ignore */ }

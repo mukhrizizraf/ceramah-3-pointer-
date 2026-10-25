@@ -101,8 +101,8 @@ button { cursor: pointer; background: none; border: none; }
 /* entrance */
 .rise { opacity: 0; transform: translateY(36px); transition: opacity .7s var(--ease), transform .9s var(--ease); }
 .slide.active .rise { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 85ms + 120ms); }
-[data-step]:not([data-keep]) { opacity: 0; transform: translateY(28px); transition: opacity .55s var(--ease), transform .7s var(--ease); }
-[data-step]:not([data-keep]).shown { opacity: 1; transform: none; }
+[data-step]:not([data-keep]) { opacity: 0; transform: translateY(28px) scale(.985); filter: blur(5px); transition: opacity .55s var(--ease), transform .7s var(--ease), filter .55s var(--ease); }
+[data-step]:not([data-keep]).shown { opacity: 1; transform: none; filter: none; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -723,7 +723,7 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 .mp .st3 p b { white-space: nowrap; }
 
 /* ghost placeholders: unrevealed timeline cells, stairs and dominoes keep their outline */
-.race .cell[data-step]:not(.shown), .cap[data-step]:not(.shown), .dm[data-step]:not(.shown) { opacity: 1; transform: none; background: transparent; }
+.race .cell[data-step]:not(.shown), .cap[data-step]:not(.shown), .dm[data-step]:not(.shown) { opacity: 1; transform: none; filter: none; background: transparent; }
 .race .cell[data-step]:not(.shown), .dm[data-step]:not(.shown) { border: 2px dashed var(--night3); }
 .cap[data-step]:not(.shown) { border: 2px dashed var(--line); border-bottom: none; }
 .dm[data-step]:not(.shown)::after { opacity: 0; }
@@ -822,7 +822,7 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 .ra span { font-size: 27px; line-height: 1.32; color: var(--ink2); }
 
 /* ghost placeholders for the eras and keycaps, like the staircase */
-.era[data-step]:not(.shown), .cp-s[data-step]:not(.shown) { opacity: 1; transform: none; }
+.era[data-step]:not(.shown), .cp-s[data-step]:not(.shown) { opacity: 1; transform: none; filter: none; }
 .era[data-step]:not(.shown) { background: transparent; border: 2px dashed var(--line); }
 .cp-s[data-step]:not(.shown) kbd { background: transparent; border: 2px dashed var(--line); color: transparent; }
 .era[data-step]:not(.shown) > *, .cp-s[data-step]:not(.shown) > :not(kbd), .cp-s[data-step]:not(.shown)::after { opacity: 0; transition: none; }
@@ -934,3 +934,31 @@ body.ui #toolbar { opacity: 1; pointer-events: auto; transform: translateX(-50%)
 @keyframes stSweep { 0% { background-size: 0% 5px; } 10%, 70% { background-size: 100% 5px; } 82%, 100% { background-size: 0% 5px; } }
 .cover.active .marquee .track { animation: marq 60s linear infinite; }
 @media (prefers-reduced-motion: reduce) { .cover .swarm { display: none; } .cover.active .badge svg.ring, .cover.active:not(.intro) .cover-title, .cover.active .marquee .track { animation: none; } }
+
+/* deck-wide motion (app.js Motion): headings rise word by word; the italic em word pops and draws a passing underline */
+.hcas .hw { display: inline-block; opacity: 0; transform: translateY(.42em) rotate(3deg); filter: blur(8px); }
+.slide.active .hcas .hw { opacity: 1; transform: none; filter: none; transition: opacity .6s var(--ease), transform .8s var(--ease), filter .6s var(--ease); transition-delay: calc(var(--w) * 55ms + 140ms); }
+.hcas .hw.he { position: relative; transform: translateY(.3em) scale(.7) rotate(-4deg); }
+.slide.active .hcas .hw.he { transition-timing-function: var(--ease), cubic-bezier(.3, 1.55, .5, 1), var(--ease); }
+.hcas .hw.he::after { content: ""; position: absolute; left: 3%; right: 3%; bottom: .04em; height: .065em; border-radius: 99px; background: var(--signal); transform: scaleX(0); transform-origin: left; opacity: 0; pointer-events: none; }
+.slide.active .hcas .hw.he::after { animation: emLine 1.7s var(--ease) both; animation-delay: calc(var(--w) * 55ms + 650ms); }
+@keyframes emLine { 0% { transform: scaleX(0); opacity: .9; } 45% { transform: scaleX(1); opacity: .9; } 100% { transform: scaleX(1); opacity: 0; } }
+
+/* signature moments */
+.cp-s.shown kbd { animation: keyPress .5s .12s; }
+@keyframes keyPress { 35% { transform: translateY(8px); border-bottom-width: 3px; } }
+.slip:has(.slip-stamp.shown) { animation: slipShake .5s .22s; }
+@keyframes slipShake { 20% { transform: translate(-10px, 4px) rotate(-.6deg); } 40% { transform: translate(9px, -3px) rotate(.5deg); } 60% { transform: translate(-6px, 2px); } 80% { transform: translate(3px, -1px); } }
+.slide.active .giant { animation: giantIn 1.1s var(--ease) both .12s; }
+@keyframes giantIn { from { opacity: 0; transform: scale(1.9) translateY(-40px); filter: blur(16px); } }
+.slide.active .bj-l { animation: flipIn .9s var(--ease) both; animation-delay: calc(var(--i) * 90ms + 350ms); }
+@keyframes flipIn { from { opacity: 0; transform: perspective(700px) rotateX(-90deg) translateY(-30px); } }
+.slide.active .rf { animation: redOn 1.1s both; animation-delay: calc(var(--i) * 170ms + 300ms); }
+@keyframes redOn { 0% { border-top-color: var(--night3); } 40% { border-top-color: var(--signal); box-shadow: 0 -12px 44px -8px rgba(255, 90, 31, .6); } 100% { border-top-color: var(--signal); box-shadow: none; } }
+.close-bj span:nth-child(2) { --k: 1; } .close-bj span:nth-child(3) { --k: 2; } .close-bj span:nth-child(4) { --k: 3; } .close-bj span:nth-child(5) { --k: 4; }
+.slide.active .close-bj span { animation: tileWave 3.6s ease-in-out infinite; animation-delay: calc(var(--k, 0) * .14s + 1.2s); }
+@keyframes tileWave { 0%, 55%, 100% { transform: none; background: var(--signal); } 18% { transform: translateY(-20px) rotate(-8deg); background: var(--sun); } 32% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) {
+  [data-step], .hcas .hw { filter: none !important; }
+  .giant, .bj-l, .rf, .close-bj span, .cp-s kbd, .slip, .hcas .hw.he::after { animation: none !important; }
+}
