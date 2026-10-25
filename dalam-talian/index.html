@@ -512,24 +512,34 @@
 
 <!-- ============ 27 CRITIC TEMPLATE ============ -->
 <section class="slide light" data-title="Templat AI pengkritik" data-section="Kemahiran prompt">
-  <span class="label rise" style="--i:0;color:var(--signal-deep)">Tetapkan sekali · lapisan kedua</span>
+  <span class="label rise" style="--i:0;color:var(--signal-deep)">Arahan sebenar penceramah · salin dan guna</span>
   <h2 class="h-m rise" style="--i:1;margin-top:18px">Templat 2: AI <em>pengkritik</em>, bukan pengampu.</h2>
-  <div class="mp tight">
-    <div>
-      <div class="st3" data-step="1"><span class="n">01</span><div><h3>Jangan mula dengan setuju</h3><p>AI suka memuji. Pujian buat anda rasa faham, padahal belum.</p></div></div>
-      <div class="st3" data-step="2"><span class="n">02</span><div><h3>Tag keyakinan</h3><p><b>[Pasti]</b> <b>[Mungkin]</b> <b>[Teka]</b>: anda tahu bahagian mana wajib disemak.</p></div></div>
-      <div class="st3" data-step="3"><span class="n">03</span><div><h3>Jangan mudah mengalah</h3><p>Bantahan tanpa bukti baharu tidak cukup untuk ubah jawapan.</p></div></div>
-      <div class="st3 key" data-step="4"><span class="n">!</span><div><h3>Tambah, bukan ganti</h3><p>Letak di bawah templat pelajar. Cari silap <b>sebelum</b> peperiksaan.</p></div></div>
-    </div>
-    <div class="mp-r">
+  <div class="crit">
     <div class="prompt rise" style="--i:2">
-      <div class="prompt-head"><span class="label">Templat pengkritik · sambung templat 1</span><button class="btn copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Salin</button></div>
-      <p class="prompt-text">Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju: ayat pertama mesti mencabar andaian saya atau tunjuk apa yang saya terlepas. Tandakan setiap dakwaan [Pasti], [Mungkin] atau [Teka]. Jangan guna "Soalan yang bagus" atau "Anda betul sekali". Jika saya salah, katakan "Saya tidak setuju kerana …" dan beri cara yang lebih baik. Jika saya membantah tanpa maklumat baharu, kekalkan pendirian anda.</p>
+      <div class="prompt-head"><span class="label">Templat pengkritik · letak di bawah templat 1</span><button class="btn copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>Salin</button></div>
+      <p class="prompt-text"><span>You are not my assistant. You are my advisor who happens to be smarter than me. Follow these rules in every reply:</span>
+
+<span><b>Never start with agreement.</b> Your first sentence must challenge my assumption, point out what I'm missing, or ask a question that exposes a gap in my thinking.</span>
+
+<span><b>Rate your confidence.</b> Before any claim, tag it [Certain] if you have hard evidence, [Likely] if it's a strong inference, [Guessing] if you are filling gaps. If most of your reply is guessing, say so first.</span>
+
+<span><b>Kill these phrases for good:</b> "Great question", "You're absolutely right", "That makes a lot of sense", "Absolutely", "Definitely". If you catch yourself typing one, delete and rewrite.</span>
+
+<span><b>Disagree with structure.</b> When I'm wrong, say: "I disagree because [reason]. Here's what I'd do instead [alternative]. The risk in your approach is [specific downside]."</span>
+
+<span><b>Give me the uncomfortable answer first.</b> If there's a truth I probably don't want to hear, lead with it. First line, not buried in paragraph three.</span>
+
+<span><b>No warm up paragraphs.</b> Skip "There are several ways to look at this". Start with the most useful thing you can say.</span>
+
+<span><b>If I push back, don't fold.</b> Hold your position unless I give you genuinely new information. "But I really think" is not new information.</span>
+
+<span><b>Be my debate partner.</b> Be critical with me, find weaknesses, blind spots and flawed logic. Stop agreeing just to be nice. Seek the truth and the best outcome, not just what I want to hear. Be direct and tough. If you need to contradict me, contradict me. If you’re not sure, say you are not sure. Check the internet before stating facts.</span></p>
     </div>
-    <div class="mp-try rise" style="--i:3"><span class="label">Uji andaian salah</span><p>Tanya: "Heteroskedastisiti bermaksud ralat saling berkorelasi, betul?" Jika AI terus setuju, templat belum berfungsi.</p></div>
+    <div class="crit-foot rise" style="--i:3">
+      <div class="mp-try"><span class="label">Uji andaian salah</span><p>Tanya: "Heteroskedastisiti bermaksud ralat saling berkorelasi, betul?" Jika AI terus setuju, templat belum berfungsi.</p></div>
     </div>
   </div>
-  <aside class="notes">[3 minit] Templat ini diadaptasi daripada arahan yang saya sendiri guna dalam Claude, ChatGPT dan Gemini. Masalahnya: AI cenderung bersetuju dan memuji. Bila AI kata "Betul, bagus!", kita rasa faham (ingat slaid Ilusi faham), padahal mungkin salah. Tekan → untuk setiap peraturan. 1) Ayat pertama mesti mencabar, bukan memuji. 2) Tag keyakinan: [Pasti] ada bukti kukuh, [Mungkin] inferens kuat, [Teka] AI mengisi kekosongan. Semua yang bertanda [Teka] wajib disemak dengan nota atau buku. 3) Jika pelajar membantah tanpa bukti, AI tidak patut terus mengalah. 4) Templat ini disambung di bawah templat pelajar, bukan menggantikannya; tujuannya mencari silap sebelum peperiksaan, bukan menjadikan AI kasar. Ujian: dakwaan "heteroskedastisiti bermaksud ralat saling berkorelasi" adalah SALAH (itu autokorelasi; heteroskedastisiti ialah varians ralat yang tidak malar). AI yang mengikut templat sepatutnya membantah. Klik "Salin" dan letak di chat mesyuarat.</aside>
+  <aside class="notes">[3 minit] Ini arahan sebenar yang saya sendiri guna dalam Claude, ChatGPT dan Gemini, tanpa diubah. Masalahnya: AI cenderung bersetuju dan memuji. Bila AI kata "Betul, bagus!", kita rasa faham (ingat slaid Ilusi faham), padahal mungkin salah. Tunjuk tiga peraturan utama (perkataan kuning): 1) Never start with agreement: ayat pertama mesti mencabar, bukan memuji. 2) Rate your confidence: [Certain] ada bukti kukuh, [Likely] inferens kuat, [Guessing] AI mengisi kekosongan. Semua yang bertanda [Guessing] wajib disemak dengan nota atau buku. 3) If I push back, don't fold: jika pelajar membantah tanpa bukti, AI tidak patut terus mengalah. Arahan dalam bahasa Inggeris tidak mengapa; AI tetap menjawab dalam bahasa yang anda guna. Templat ini diletak di bawah templat pelajar (slaid 26), bukan menggantikannya; tujuannya mencari silap sebelum peperiksaan, bukan menjadikan AI kasar. Ujian: dakwaan "heteroskedastisiti bermaksud ralat saling berkorelasi" adalah SALAH (itu autokorelasi; heteroskedastisiti ialah varians ralat yang tidak malar). AI yang mengikut templat sepatutnya membantah. Klik "Salin" dan letak di chat mesyuarat supaya peserta boleh menyimpannya. Panjang templat ini kira-kira 1,580 aksara: lihat nota slaid 29 untuk had ChatGPT.</aside>
 </section>
 
 <!-- ============ 28 HOW-TO: CLAUDE ============ -->
@@ -564,7 +574,7 @@
           <div class="ci-row"><span>Full name</span><i>Nur Aisyah binti Ahmad</i></div>
           <div class="ci-row"><span>What should Claude call you?</span><i>Aisyah</i></div>
           <div><span class="ci-lab">Instructions for Claude</span><span class="ci-desc">Claude will keep these in mind across chats.</span></div>
-          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
+          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>You are not my assistant. You are my advisor who happens to be smarter than me. Follow these rules in every reply…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
         </div>
       </div>
       <div class="ci-test" data-step="4">
@@ -607,7 +617,7 @@
         <div class="ci-main">
           <div class="ci-top"><span>← Back</span><span class="ci-btn">Cancel</span><span class="ci-btn dark ci-hit" data-ci="3">Save</span></div>
           <div><span class="ci-title">ChatGPT custom instructions</span><span class="ci-desc">Give ChatGPT extra instructions and context for all chats.</span></div>
-          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
+          <div class="ci-box ci-hit" data-ci="3"><span class="ci-ph">Tulis arahan di sini…</span><p class="ci-typed" data-step="3">Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris. Jadi jurulatih, bukan penulis…<br><br>You are not my assistant. You are my advisor who happens to be smarter than me. Follow these rules in every reply…</p><b class="ci-pin tr" data-ci="3" data-step="3" data-keep>3</b></div>
           <div class="ci-row"><span>Nickname</span><i>Aisyah</i></div>
         </div>
       </div>
@@ -617,7 +627,7 @@
       </div>
     </div>
   </div>
-  <aside class="notes">[2 minit] Tekan → untuk setiap langkah. 1) Di chatgpt.com, klik nama anda di bawah kiri, kemudian Settings. 2) Pilih Personalization, kemudian Custom instructions. 3) Letak templat 1 dan 2 dalam kotak, isi Nickname dan Occupation jika mahu, dan tekan Save di atas kanan. Jangan lupa Save: tanpa Save, arahan hilang. 4) Arahan hanya dibaca dalam chat BAHARU, bukan chat yang sedang dibuka. [Nama menu ikut paparan Oktober 2026; semak semula sebelum sesi.]</aside>
+  <aside class="notes">[2 minit] Tekan → untuk setiap langkah. 1) Di chatgpt.com, klik nama anda di bawah kiri, kemudian Settings. 2) Pilih Personalization, kemudian Custom instructions. 3) Letak templat 1 dan 2 dalam kotak, isi Nickname dan Occupation jika mahu, dan tekan Save di atas kanan. Had ChatGPT kira-kira 1,500 aksara setiap kotak, dan templat pengkritik sahaja kira-kira 1,580. Jika ditolak, letak templat pengkritik dalam Custom instructions dan maklumat diri (templat 1) dalam ruangan tentang diri anda di bawahnya, atau buang perenggan terakhir templat pengkritik. [Semak had semasa sebelum sesi.] Jangan lupa Save: tanpa Save, arahan hilang. 4) Arahan hanya dibaca dalam chat BAHARU, bukan chat yang sedang dibuka. [Nama menu ikut paparan Oktober 2026; semak semula sebelum sesi.]</aside>
 </section>
 
 <!-- ============ 30 HOW-TO: GEMINI ============ -->
@@ -650,7 +660,7 @@
           <div><span class="ci-desc big">Customize your Gemini experience by giving it instructions.</span><span class="ci-desc">Example: Start responses with a TL;DR summary</span></div>
           <div class="ci-top"><span class="ci-btn blue ci-hit" data-ci="3">+ Add<b class="ci-pin out" data-ci="3" data-step="3" data-keep>3</b></span><span class="ci-btn">Delete all</span></div>
           <div class="ci-card" data-step="3"><p>Saya pelajar sarjana muda tahun 2 di UUM, program Ekonomi. Terangkan dalam Bahasa Melayu, tetapi kekalkan istilah teknikal dalam bahasa Inggeris…</p><span>⋮</span></div>
-          <div class="ci-card" data-step="3"><p>Anda bukan pembantu saya; anda penasihat yang lebih bijak daripada saya. Jangan mula dengan bersetuju…</p><span>⋮</span></div>
+          <div class="ci-card" data-step="3"><p>You are not my assistant. You are my advisor who happens to be smarter than me. Follow these rules in every reply…</p><span>⋮</span></div>
         </div>
       </div>
       <div class="ci-test" data-step="4">

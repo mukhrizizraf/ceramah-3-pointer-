@@ -67,7 +67,7 @@ AKTIVITI DALAM SLAID
   Slaid 24  Prompt Battle: tulis prompt di chat (3:00), kongsi 3 prompt (W)
   Slaid 25  Baiki prompt dengan AI: klik Salin, letak prompt di chat
   Slaid 26  Tetapkan pilihan AI: templat pelajar Malaysia (Salin)
-  Slaid 27  Templat AI pengkritik: tag [Pasti]/[Mungkin]/[Teka] (Salin)
+  Slaid 27  Templat AI pengkritik: arahan sebenar penceramah, BI (Salin)
   Slaid 28  Langkah: Claude     (simulasi, tekan → untuk setiap klik)
   Slaid 29  Langkah: ChatGPT    (simulasi, tekan → untuk setiap klik)
   Slaid 30  Langkah: Gemini     (simulasi, tekan → untuk setiap klik)
